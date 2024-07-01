@@ -1,0 +1,349 @@
+## ==================================== Helper:Docs
+# class/role/title are x11 properties. xwayland apps still have them, but wayland apps do not. 
+# https://github.com/swaywm/sway/wiki
+# https://github.com/jjquin/swayarch/blob/master/.config/sway/config.d/window_rules
+# https://github.com/Crandel/home/blob/master/.config/sway/config#L394 
+# https://gist.github.com/dshoreman/278091a17c08e30c46c7e7988b7c2f7d
+# 
+
+## ==================================== Helper:Utils
+# xdotool -- for x11
+# swaymsg -t get_tree -- for sway
+
+## ==================================== Helper:Codes
+# keycode 67 = XF86Launch1
+# keycode 68 = XF86Launch2
+# keycode 69 = XF86Launch3
+# keycode 70 = XF86Launch4
+# keycode 71 = XF86Launch5
+# keycode 72 = XF86Launch6
+# keycode 73 = XF86Launch7
+# keycode 74 = XF86Launch8
+# keycode 75 = XF86Launch9
+#
+# keycode 192 = F1
+# keycode 193 = F2
+# keycode 194 = F3
+# keycode 195 = F4
+# keycode 196 = F5
+# keycode 197 = F6
+# keycode 198 = F7
+# keycode 199 = F8
+# keycode 200 = F9
+
+## ==================================== CONFIG
+set $mod Mod4
+set $ALT Mod1
+
+set $workdir ~/.config/sway
+set $scripts ~/.config/sway/scripts
+
+set $term alacritty --config-file $workdir/alacritty/config.toml
+set $send-notify exec --no-startup-id dunstify -u low -h string:x-dunst-stack-tag:i3config
+
+# font pango:DejaVu SansMono 8
+
+bindsym $mod+h focus left
+bindsym $mod+j focus down
+bindsym $mod+k focus up
+bindsym $mod+l focus right
+
+bindsym $mod+Left focus left
+bindsym $mod+Down focus down
+bindsym $mod+Up focus up
+bindsym $mod+Right focus right
+
+bindsym $mod+Shift+h move left
+bindsym $mod+Shift+j move down
+bindsym $mod+Shift+k move up
+bindsym $mod+Shift+l move right
+
+bindsym $mod+Shift+Left move left
+bindsym $mod+Shift+Down move down
+bindsym $mod+Shift+Up move up
+bindsym $mod+Shift+Right move right
+
+bindsym $mod+f fullscreen toggle
+bindsym $mod+c split h, $send-notify 'Horizontal Focus'
+bindsym $mod+v split v, $send-notify 'Vertical Focus'
+bindsym $mod+q split toggle 
+
+bindsym $mod+b layout toggle, $send-notify "TEES"
+bindsym $mod+s layout stacking, $send-notify "Stacking"
+bindsym $mod+w layout tabbed, $send-notify "Tabbed"
+bindsym $mod+e layout toggle split
+
+bindsym $mod+Shift+space floating toggle
+
+bindsym $mod+space focus mode_toggle
+
+bindsym $mod+Ctrl+a focus parent
+bindsym $mod+Ctrl+c focus child
+
+bindsym $mod+Shift+s sticky toggle
+
+# hide/show
+bindsym $mod+Shift+minus move scratchpad
+bindsym $mod+minus scratchpad show
+
+bindsym $mod+m bar mode toggle
+
+# Use Mouse+$mod to drag floating windows to their wanted position
+floating_modifier $mod
+
+bindsym $mod+Shift+q kill
+bindsym $mod+Return exec --no-startup-id $term
+bindcode $mod+40 exec "rofi -modi drun,run -show drun"
+bindsym Print exec flameshot
+
+bindsym $ALT+F1 exec --no-startup-id $scripts/rofi_launcher
+bindsym $ALT+F2 exec --no-startup-id thunar
+bindsym $ALT+F3 exec --no-startup-id neovide $HOME/Laboratory/dev/Coding/
+bindsym $ALT+F4 exec --no-startup-id clipcat-menu
+
+bindsym XF86MonBrightnessUp exec light -A 5
+bindsym XF86MonBrightnessDown exec light -U 5
+# bindsym XF86KbdBrightnessUp exec light -A 5 -s sysfs/leds/smc::kbd_backlight
+# bindsym XF86KbdBrightnessDown exec light -U 5 -s sysfs/leds/smc::kbd_backlight
+bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioNext exec playerctl next
+bindsym XF86AudioPrev exec playerctl previous
+bindsym XF86AudioPlay exec playerctl play-pause
+
+set $ws1 "1"
+set $ws2 "2"
+set $ws3 "3"
+set $ws4 "4"
+set $ws5 "5"
+set $ws6 "6"
+set $ws7 "7"
+set $ws8 "8"
+set $ws9 "9"
+set $ws10 "10"
+
+# switch to workspace
+bindsym $mod+1 workspace number $ws1
+bindsym $mod+2 workspace number $ws2
+bindsym $mod+3 workspace number $ws3
+bindsym $mod+4 workspace number $ws4
+bindsym $mod+5 workspace number $ws5
+bindsym $mod+6 workspace number $ws6
+bindsym $mod+7 workspace number $ws7
+bindsym $mod+8 workspace number $ws8
+bindsym $mod+9 workspace number $ws9
+# bindsym $mod+0 workspace number $ws10
+
+bindsym $mod+Shift+1 move container to workspace number $ws1
+bindsym $mod+Shift+2 move container to workspace number $ws2
+bindsym $mod+Shift+3 move container to workspace number $ws3
+bindsym $mod+Shift+4 move container to workspace number $ws4
+bindsym $mod+Shift+5 move container to workspace number $ws5
+bindsym $mod+Shift+6 move container to workspace number $ws6
+bindsym $mod+Shift+7 move container to workspace number $ws7
+bindsym $mod+Shift+8 move container to workspace number $ws8
+bindsym $mod+Shift+9 move container to workspace number $ws9
+bindsym $mod+Shift+0 move container to workspace number $ws10
+bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_and_forth
+
+bindsym $mod+Shift+r reload, $send-notify 'Reload'
+bindsym $mod+Shift+e exec swaynag -t warning -m 'Do you really want to exit sway?' -b 'Exit sway' 'swaymsg exit' --button-margin-right=10px
+
+bindsym $mod+r mode "resize"
+mode "resize" {
+    bindsym j resize shrink width 10 px or 10 ppt
+    bindsym k resize grow height 10 px or 10 ppt
+    bindsym l resize shrink height 10 px or 10 ppt
+    bindsym semicolon resize grow width 10 px or 10 ppt
+
+    # same bindings, but for the arrow keys
+    bindsym Left resize shrink width 10 px or 10 ppt
+    bindsym Down resize grow height 10 px or 10 ppt
+    bindsym Up resize shrink height 10 px or 10 ppt
+    bindsym Right resize grow width 10 px or 10 ppt
+
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+# mode "resize" {
+#     bindsym $left resize shrink width 40px
+#     bindsym $down resize grow height 40px
+#     bindsym $up resize shrink height 40px
+#     bindsym $right resize grow width 40px
+#     # Return to default mode
+#     bindsym Return mode "default"
+#     bindsym Escape mode "default"
+# }
+# bindsym $mod+r mode "resize"
+
+
+# TODO: added lock, reboot and shutdown 
+set $mode_system (l)ock, (e)xit, (r)eboot, (Shift+s)hutdown
+bindsym $mod+0 mode "$mode_system"
+mode "$mode_system" {
+    bindsym e exec --no-startup-id sway exit, mode "default"
+
+    # exit system mode: "Enter" or "Escape"
+    bindsym Return mode "default"
+    bindsym Escape mode "default"
+}
+
+gaps inner 10
+gaps outer 4
+smart_gaps on
+default_border pixel 3
+hide_edge_borders --i3 smart
+
+# Set the background image
+# output * bg $workdir/assets/wallpaper fill
+focus_wrapping no
+
+# input type:keyboard {
+#     xkb_layout "us,ru"
+#     xkb_options "grp:alt_shift_toggle"
+#     xkb_numlock enable
+# }
+
+bar {
+    id system_bar
+    status_command i3status-rs $workdir/i3status-rs/config.toml
+
+    # tray
+    tray_padding 3
+    icon_theme Nordic-Folders
+
+    # settings
+    position top
+    separator_symbol "|"
+    workspace_min_width 24
+    binding_mode_indicator yes
+    # font pango:FiraCode Nerd Font Mono 10
+    font pango:JetBrainsMono Nerd Font 10
+
+    colors {
+        background #000000
+        statusline #ffffff
+        separator  #44475A
+        focused_workspace #0f1212 #c6c6c6 #0f1212
+        focused_workspace  #484e50 #c6c6c6 #000000
+        active_workspace   #282A36 #484e50 #F8F8F2
+        inactive_workspace #282A36 #282A36 #BFBFBF
+        urgent_workspace   #FF5555 #FF5555 #F8F8F2
+        binding_mode #FF5555 #FF5555 #F8F8F2
+    }
+}
+
+title_align center
+
+for_window [class=".*"] title_format "%class | %title"
+# for_window [floating] resize set 800 600
+for_window {
+    [app_id="copyq"] floating enable, sticky enable, resize set 600 550, move position cursor, move down 330
+    [app_id="qt5ct"] floating enable sticky enable border normal
+    [app_id="xfce-polkit"] floating enable, sticky enable
+    [app_id="blueman-manager"] floating enable, resize
+    [app_id="thunar"] floating enable, resize set 1000 600
+    # [app_id="thunar" title="^Copying.*|^Confirm.*|^File.*|^Create.*|^Select.*"] floating enable
+    [app_id="firefox" title="^Picture-in-Picture$"] floating enable, sticky enable, move position 1400 700
+
+    [instance="gpartedbin"] floating enable
+    [instance="megasync"] floating enable, move position mouse
+}
+
+for_window {
+	[app_id="(?i)mpv"] floating enable
+	[app_id="pavucontrol"] floating enable
+	# [app_id="(?i)thunar"] floating enable
+	[app_id="nm-connection-editor$"] floating enable
+	[app_id="firetools"] floating enable
+	[app_id="(pavucontrol|psensor)"] floating enable
+
+	[window_role="GtkFileChooserDialog"] resize set 800 600
+	[window_role="GtkFiileChooserDialog"] move position center
+}
+
+# for_window {
+#     [title="Dropdown *"] floating enable
+#     [title="Dropdown *"] move scratchpad
+#     [title="Dropdown *"] sticky enable
+#     [title="Dropdown *"] scratchpad show
+#     [title="Dropdown *"] resize set width 625
+#     [title="Dropdown *"] resize set height 400
+#     [title="Dropdown *"] border pixel 3
+#     [title="Dropdown *"] move position center	
+#
+#     # General dropdown window traits. The order can matter.
+#     [title="Dropdown Launcher*"] floating enable
+#     [title="Dropdown Launcher*"] move scratchpad
+#     [title="Dropdown Launcher*"] sticky enable
+#     [title="Dropdown Launcher*"] scratchpad show
+#     [title="Dropdown Launcher*"] resize set width 225
+#     [title="Dropdown Launcher*"] resize set height 100
+#     [title="Dropdown Launcher*"] border pixel 0
+#     [title="Dropdown Launcher*"] move position center	
+# }
+
+for_window [window_role="pop-up"] floating enable
+for_window [window_role="bubble"] floating enable
+for_window [window_role="task_dialog"] floating enable
+for_window [window_role="Preferences"] floating enable
+for_window [window_type="dialog"] floating enable
+for_window [window_type="menu"] floating enable
+for_window [instance="update_installer"] floating enable	
+
+# for_window [title="^launcher$"] floating enable, border none, opacity 0.8, resize set 400 300, move position center
+
+exec blueman-applet
+exec nm-applet --indicator
+exec flameshot
+exec megasync
+exec clipcatd --config $workdir/clipcat.toml
+
+exec dbus-daemon --session --address=unix:path=$XDG_RUNTIME_DIR/bus
+exec /usr/bin/Xwayland
+exec --nostartup-id light -S 75
+exec --no-startup-id /usr/lib/xfce-polkit/xfce-polkit
+
+# exec hsetroot -cover $workdir/theme/wallpaper
+# exec swaybg -i ~/.config/sway/assets/wallpaper
+# exec --no-startup-id nitrogen --restore
+# exec --no-startup-id setwall random ~/Pictures/wallpapers/ -c sway
+# exec --no-startup-id /usr/lib/polkit-1/ sleep 1; picom -b --config $workdir/picom.confpolkit-agent-helper-1
+# exe --no-startup-id xsettingsd --config $workdir/xsettingsd
+# exec --no-startup-id xfce4-power-manager
+# exec --no-startup-id volumeicon
+# exec --no-startup-id conky -c $workdir/conky/helper.conf
+# exec --no-startup-id conky -c $workdir/conky/monitoring.conf
+
+exec_always {
+#     gsettings set $gnome_schema gtk-theme Nordic
+#     gsettings set $gnome-schema icon-theme ...
+#     gsettings set $gnome-schema cursor-theme ...
+#     gsettings set $gnome-schema font-name ...
+    # gsettings set $gnome-schema monospace-font-name 'Hack 10'
+}
+
+
+# exec_always import-gsettings \
+#     gtk-theme:gtk-theme-name \
+#     icon-theme:gtk-icon-theme-name \
+#     cursor-theme:gtk-cursor-theme-name
+
+# exec swayidle -w \
+#     timeout 2700 'swaylock -f -C $workdir/swaylock/config' \
+#     before-sleep 'swaylock -f -C $workdir/swaylock/config'
+
+include $HOME/.config/sway/config.d/*
+include $HOME/.config/sway/themes/catppuccin-mocha
+
+exec_always --no-startup-id $scripts/sway_env
+
+
+# ### Input/Output devices
+# output HDMI-A-1 {
+# 	resolution 1920x1080
+#     scale 1.0
+# 	pos 1600 0
+#     scale_filter linear
+# }
