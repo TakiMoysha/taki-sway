@@ -5,11 +5,14 @@ icons = "awesome5"
 backlight = ["", "", "", "", "", "", "", "", "", "", "", "", "", "", ""]
 bat_charging = "|^| "
 
-# [[block]]
-# # clipboard
-# block = "custom"
-# command = "echo -ne '󿚑 '; ~/.config/i3/scripts/blocks/clipboard --clipboard"
-# interval = 2
+[[block]]
+block = "privacy"
+[[block.driver]]
+name = "v4l"
+[[block.driver]]
+name = "pipewire"
+exclude_input = ["openrgb"]
+display = "nickname"
 
 [[block]]
 block = "cpu"
@@ -27,6 +30,8 @@ warning = 95
 
 [[block]]
 block = "memory"
+warning_mem = 70
+critical_mem = 90
 format = " RAM: $mem_used_percents.eng(w:2) "
 format_alt = " SWAP: $swap_used_percents.eng(w:2) "
 
@@ -94,12 +99,7 @@ not_charging_format = " $icon  "
 
 [[block]]
 block = "keyboard_layout"
-
-[[block]]
-block = "privacy"
-[[block.driver]]
-name = "v4l"
-[[block.driver]]
-name = "pipewire"
-exclude_input = ["openrgb"]
-display = "nickname"
+driver = "sway"
+[block.mappings]
+"English (US)" = "US"
+"Russian (N/A)" = "RU"

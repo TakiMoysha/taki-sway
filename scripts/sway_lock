@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+swaydile -w \
+  timeout 15 'swaymsg "output * dpms off"' \
+  resume 'swaymsg "output * dpms on"' &
+
+
+swaylock --image ~/Pictures/wallpapers/wallpaper_1.jpg
+
+pkill --newest swayidle

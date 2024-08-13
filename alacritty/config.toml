@@ -1,3 +1,10 @@
+import = [
+  "~/.config/sway/alacritty/fonts.toml",
+  "~/.config/sway/alacritty/colors.toml",
+]
+live_config_reload = true
+ipc_socket = true
+
 [font]
 size = 9
 
@@ -14,13 +21,15 @@ TERM = "alacritty"
 WINIT_X11_SCALE_FACTOR = "1.1"
 
 [window]
-# opacity = 1.0
+opacity = 1
 blur = true
 dynamic_padding = true
+decorations = "full"
 class = { instance = "Alacritty", general = "Alacritty" }
+startup_mode = "Windowed"
+dynamic_title = true
+decorations_theme_variant = "None"
 
-# decorations = "Full"
-# decorations_theme_variant = "Dark"
 
 [scrolling]
 history = 10000
@@ -46,3 +55,8 @@ renderer = "None"
 print_events =  false
 highlight_damage = false
 prefer_egl = false
+
+[bell]
+animation = "Linear"
+duration = 20
+command = { program = "paplay", args = ["/usr/share/sounds/freedesktop/stereo/dialog-error.oga"] }

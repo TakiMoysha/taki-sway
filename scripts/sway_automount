@@ -1,0 +1,21 @@
+#!/usr/bin/env bash
+
+# ENVS
+WORKDIR="$HOME/.config/i3"
+
+# mount disks
+if mount | grep -q "takimoysha/segment-1"; then
+	dunstify "Already mounted Segment-1"
+else
+  sleep 1;
+	if udisksctl mount -b /dev/disk/by-label/segment-1; then
+		dunstify "Mounted Segment-1"
+	else
+		dunstify "Failed to mount Segment-1"
+	fi
+fi
+
+# run composer
+"$WORKDIR"/scripts/i3_comp
+
+return 0

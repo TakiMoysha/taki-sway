@@ -1,5 +1,6 @@
-#!/bin/env bash
+#!/usr/bin/env bash
 # Purpose: Set env vars, autostart apps and mount partitions
+# it needed added to .profile
 
 export XDG_CURRENT_DESKTOP=sway
 export XDG_SESSION_DESKTOP=sway
@@ -7,4 +8,6 @@ export QT_QPA_PLATFORM=wayland
 export QT_QPA_PLATFORMTHEME=gtk2
 export WLR_NO_HARDWARE_CURSORS=1
 export MOZ_ENABLE_WAYLAND=1
+
+return 0
 

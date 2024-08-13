@@ -94,12 +94,12 @@ floating_modifier $mod
 bindsym $mod+Shift+q kill
 bindsym $mod+Return exec --no-startup-id $term
 bindcode $mod+40 exec "rofi -modi drun,run -show drun"
-bindsym Print exec flameshot
+bindsym Print exec flameshot gui
 
 bindsym $ALT+F1 exec --no-startup-id $scripts/rofi_launcher
 bindsym $ALT+F2 exec --no-startup-id thunar
-bindsym $ALT+F3 exec --no-startup-id neovide $HOME/Laboratory/dev/Coding/
-bindsym $ALT+F4 exec --no-startup-id clipcat-menu
+bindsym $ALT+F3 exec --no-startup-id neovide
+bindsym $ALT+F4 exec --no-startup-id clipcat-menu -c $workdir/clipcat/clipcat-menu.toml
 
 bindsym XF86MonBrightnessUp exec light -A 5
 bindsym XF86MonBrightnessDown exec light -U 5
@@ -179,31 +179,34 @@ mode "resize" {
 
 
 # TODO: added lock, reboot and shutdown 
-set $mode_system (l)ock, (e)xit, (r)eboot, (Shift+s)hutdown
+set $mode_system (s)uspend, (l)ock, (e)xit, (r)eboot, (Shift+s)hutdown
 bindsym $mod+0 mode "$mode_system"
 mode "$mode_system" {
+    bindsym s exec --no-startup-id systemctl suspend, mode "default"
     bindsym e exec --no-startup-id sway exit, mode "default"
+    bindsym r exec --no-startup-id systemctl reboot, mode "default"
+    bindsym Shift+s exec --no-startup-id systemctl poweroff, mode "default"
 
     # exit system mode: "Enter" or "Escape"
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
 
-gaps inner 10
-gaps outer 4
+gaps inner 1
+gaps outer 2
 smart_gaps on
 default_border pixel 3
 hide_edge_borders --i3 smart
 
 # Set the background image
-# output * bg $workdir/assets/wallpaper fill
+# output * bg /home/takimoysha/.config/sway/assets/wallpaper fill
 focus_wrapping no
 
-# input type:keyboard {
-#     xkb_layout "us,ru"
-#     xkb_options "grp:alt_shift_toggle"
-#     xkb_numlock enable
-# }
+input type:keyboard {
+    xkb_layout "us,ru"
+    xkb_options "grp:alt_shift_toggle"
+    xkb_numlock enable
+}
 
 bar {
     id system_bar
@@ -236,22 +239,20 @@ bar {
 
 title_align center
 
+set $float floating enable; border pixel 1; shadows enable
+
 for_window [class=".*"] title_format "%class | %title"
 # for_window [floating] resize set 800 600
+for_window [floating] shadows enable
 for_window {
-    [app_id="copyq"] floating enable, sticky enable, resize set 600 550, move position cursor, move down 330
-    [app_id="qt5ct"] floating enable sticky enable border normal
-    [app_id="xfce-polkit"] floating enable, sticky enable
-    [app_id="blueman-manager"] floating enable, resize
+    [app_id="flameshot"] floating enable
+    [app_id="qt5ct"] $float, sticky enable, border normal
+    [app_id="qt6ct"] $float, sticky enable, border normal
+    [app_id="xfce-polkit"] $float, sticky enable
+    [app_id="blueman-manager"] $float
     [app_id="thunar"] floating enable, resize set 1000 600
     # [app_id="thunar" title="^Copying.*|^Confirm.*|^File.*|^Create.*|^Select.*"] floating enable
-    [app_id="firefox" title="^Picture-in-Picture$"] floating enable, sticky enable, move position 1400 700
-
-    [instance="gpartedbin"] floating enable
-    [instance="megasync"] floating enable, move position mouse
-}
-
-for_window {
+    [app_id="firefox" title="^Picture-in-Picture$"] $float sticky enable, move position 1400 700
 	[app_id="(?i)mpv"] floating enable
 	[app_id="pavucontrol"] floating enable
 	# [app_id="(?i)thunar"] floating enable
@@ -259,6 +260,20 @@ for_window {
 	[app_id="firetools"] floating enable
 	[app_id="(pavucontrol|psensor)"] floating enable
 
+}
+for_window {
+    [instance="anydesk"] $float
+    [instance="gpartedbin"] floating enable
+    [instance="megasync"] floating enable, move position mouse
+    [instance="update_installer"] floating enable	
+}
+for_window {
+    [window_role="pop-up"] floating enable
+    [window_role="bubble"] floating enable
+    [window_role="task_dialog"] floating enable
+    [window_role="Preferences"] floating enable
+    [window_type="dialog"] floating enable
+    [window_type="menu"] floating enable
 	[window_role="GtkFileChooserDialog"] resize set 800 600
 	[window_role="GtkFiileChooserDialog"] move position center
 }
@@ -284,35 +299,21 @@ for_window {
 #     [title="Dropdown Launcher*"] move position center	
 # }
 
-for_window [window_role="pop-up"] floating enable
-for_window [window_role="bubble"] floating enable
-for_window [window_role="task_dialog"] floating enable
-for_window [window_role="Preferences"] floating enable
-for_window [window_type="dialog"] floating enable
-for_window [window_type="menu"] floating enable
-for_window [instance="update_installer"] floating enable	
-
-# for_window [title="^launcher$"] floating enable, border none, opacity 0.8, resize set 400 300, move position center
-
 exec blueman-applet
 exec nm-applet --indicator
-exec flameshot
+exec --no-startup-id flameshot
 exec megasync
-exec clipcatd --config $workdir/clipcat.toml
+# exec --no-startup-id wlsunset
+exec_always --no-startup-id clipcatd --config $workdir/clipcat/clipcat.toml
 
-exec dbus-daemon --session --address=unix:path=$XDG_RUNTIME_DIR/bus
+exec gnome-keyring-daemon -r -d
+exec dbus-daemon --session --address=unix:path=$XDG_RUNTIME_DIR/bus_session_socket
 exec /usr/bin/Xwayland
 exec --nostartup-id light -S 75
 exec --no-startup-id /usr/lib/xfce-polkit/xfce-polkit
+exec_always --no-startup-id setwall random ~/Pictures/wallpapers/ -c sway
 
-# exec hsetroot -cover $workdir/theme/wallpaper
-# exec swaybg -i ~/.config/sway/assets/wallpaper
-# exec --no-startup-id nitrogen --restore
-# exec --no-startup-id setwall random ~/Pictures/wallpapers/ -c sway
-# exec --no-startup-id /usr/lib/polkit-1/ sleep 1; picom -b --config $workdir/picom.confpolkit-agent-helper-1
 # exe --no-startup-id xsettingsd --config $workdir/xsettingsd
-# exec --no-startup-id xfce4-power-manager
-# exec --no-startup-id volumeicon
 # exec --no-startup-id conky -c $workdir/conky/helper.conf
 # exec --no-startup-id conky -c $workdir/conky/monitoring.conf
 
@@ -331,19 +332,14 @@ exec_always {
 #     cursor-theme:gtk-cursor-theme-name
 
 # exec swayidle -w \
-#     timeout 2700 'swaylock -f -C $workdir/swaylock/config' \
+#     timeout 300 'swaylock -f -C $workdir/swaylock/config' \
+#     timeout 600 'swaymsg "output * dpms off"' \
+#         resume  'swaymsg "output * dpms on"' \
 #     before-sleep 'swaylock -f -C $workdir/swaylock/config'
+
 
 include $HOME/.config/sway/config.d/*
 include $HOME/.config/sway/themes/catppuccin-mocha
 
-exec_always --no-startup-id $scripts/sway_env
-
-
-# ### Input/Output devices
-# output HDMI-A-1 {
-# 	resolution 1920x1080
-#     scale 1.0
-# 	pos 1600 0
-#     scale_filter linear
-# }
+exec_always $scripts/sway_autostart
+exec_always $scripts/sway_automount
