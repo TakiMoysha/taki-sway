@@ -1,3 +1,4 @@
+[general]
 import = [
   "~/.config/sway/alacritty/fonts.toml",
   "~/.config/sway/alacritty/colors.toml",

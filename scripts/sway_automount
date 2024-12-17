@@ -5,17 +5,22 @@ WORKDIR="$HOME/.config/i3"
 
 # mount disks
 if mount | grep -q "takimoysha/segment-1"; then
-	dunstify "Already mounted Segment-1"
+	notify-send -u low -h string:x-dunst-stack-tag:automount "Already mounted Segment-1"
 else
   sleep 1;
-	if udisksctl mount -b /dev/disk/by-label/segment-1; then
-		dunstify "Mounted Segment-1"
-	else
-		dunstify "Failed to mount Segment-1"
-	fi
-fi
 
-# run composer
-"$WORKDIR"/scripts/i3_comp
+	if udisksctl mount -b /dev/disk/by-label/segment-1; then
+		notify-send -u low -h string:x-dunst-stack-tag:automount "Mounted Segment-1"
+	else
+		notify-send -u crit -h string:x-dunst-stack-tag:automount "Failed to mount <SEGMENT-1>"
+	fi
+
+	if udisksctl mount -b /dev/disk/by-label/devlab; then
+		notify-send -u low -h string:x-dunst-stack-tag:automount "Mounted devlab"
+	else
+		notify-send -u crit -h string:x-dunst-stack-tag:automount "Failed to mount <DEVLAB>"
+	fi
+
+fi
 
 return 0

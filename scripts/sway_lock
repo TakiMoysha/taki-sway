@@ -8,3 +8,4 @@ swaydile -w \
 swaylock --image ~/Pictures/wallpapers/wallpaper_1.jpg
 
 pkill --newest swayidle
+

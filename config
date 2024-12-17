@@ -39,7 +39,8 @@ set $workdir ~/.config/sway
 set $scripts ~/.config/sway/scripts
 
 set $term alacritty --config-file $workdir/alacritty/config.toml
-set $send-notify exec --no-startup-id dunstify -u low -h string:x-dunst-stack-tag:i3config
+# dunstify / notify-send / dunst
+set $send-notify exec --no-startup-id notify-send -u low -h string:x-dunst-stack-tag:sway
 
 # font pango:DejaVu SansMono 8
 
@@ -93,13 +94,19 @@ floating_modifier $mod
 
 bindsym $mod+Shift+q kill
 bindsym $mod+Return exec --no-startup-id $term
-bindcode $mod+40 exec "rofi -modi drun,run -show drun"
+# bindcode $mod+40 exec "rofi -modi drun,run -show drun"
+# bindcode $mod+40 exec --no-startup-id rofi -x11 -show drun
+# bindcode $mod+40 exec --no-startup-id fuzzel --config $workdir/fuzzel/blue.ini 
+bindcode $mod+40 exec --no-startup-id albert show
+# bindcode $mod+40 exec --no-startup-id ulauncher-toggle
+# bindcode $mod+40 exec --no-startup-id wofi --conf $workdir/wofi/config --style $workdir/wofi/style.css
 bindsym Print exec flameshot gui
 
-bindsym $ALT+F1 exec --no-startup-id $scripts/rofi_launcher
+# bindsym $ALT+F1 exec --no-startup-id $scripts/rofi_launcher
+bindsym $ALT+F1 exec curl "127.0.0.1:60828/"
 bindsym $ALT+F2 exec --no-startup-id thunar
 bindsym $ALT+F3 exec --no-startup-id neovide
-bindsym $ALT+F4 exec --no-startup-id clipcat-menu -c $workdir/clipcat/clipcat-menu.toml
+bindsym $ALT+F4 exec --no-startup-id $term --class floating -e ringboard-tui
 
 bindsym XF86MonBrightnessUp exec light -A 5
 bindsym XF86MonBrightnessDown exec light -U 5
@@ -182,7 +189,7 @@ mode "resize" {
 set $mode_system (s)uspend, (l)ock, (e)xit, (r)eboot, (Shift+s)hutdown
 bindsym $mod+0 mode "$mode_system"
 mode "$mode_system" {
-    bindsym s exec --no-startup-id systemctl suspend, mode "default"
+    bindsym s exec --no-startup-id swaylock --config $workdir/swaylock/config, mode "default"
     bindsym e exec --no-startup-id sway exit, mode "default"
     bindsym r exec --no-startup-id systemctl reboot, mode "default"
     bindsym Shift+s exec --no-startup-id systemctl poweroff, mode "default"
@@ -192,11 +199,13 @@ mode "$mode_system" {
     bindsym Escape mode "default"
 }
 
-gaps inner 1
-gaps outer 2
+# gaps inner 1
+gaps inner 0
+# gaps outer 2
+gaps outer 0
 smart_gaps on
 default_border pixel 3
-hide_edge_borders --i3 smart
+# hide_edge_borders --i3 smart
 
 # Set the background image
 # output * bg /home/takimoysha/.config/sway/assets/wallpaper fill
@@ -239,19 +248,25 @@ bar {
 
 title_align center
 
-set $float floating enable; border pixel 1; shadows enable
+# * [!] shadows enable - not working
+set $float border pixel 1, floating enable
 
-for_window [class=".*"] title_format "%class | %title"
-# for_window [floating] resize set 800 600
-for_window [floating] shadows enable
+for_window [class=".*"] title_format "%title"
+
 for_window {
-    [app_id="flameshot"] floating enable
+    [app_id="pot"] $float, resize set 1000 600
+    [app_id="pot" title="Translate"] $float, resize set 400 600, move position 1600 10
+    [app_id="albert" title="Settings — Albert"] $float, resize set 1000 600
+    [app_id="floating"] $float, resize set 1000 600
+    [app_id="flameshot"] $float
     [app_id="qt5ct"] $float, sticky enable, border normal
     [app_id="qt6ct"] $float, sticky enable, border normal
     [app_id="xfce-polkit"] $float, sticky enable
     [app_id="blueman-manager"] $float
     [app_id="thunar"] floating enable, resize set 1000 600
+    [app_id="thunar" title="File Operation Progress"] floating enable, resize set 400 160
     # [app_id="thunar" title="^Copying.*|^Confirm.*|^File.*|^Create.*|^Select.*"] floating enable
+    [app_id="xarchiver"] $float, resize set 800 500
     [app_id="firefox" title="^Picture-in-Picture$"] $float sticky enable, move position 1400 700
 	[app_id="(?i)mpv"] floating enable
 	[app_id="pavucontrol"] floating enable
@@ -259,7 +274,6 @@ for_window {
 	[app_id="nm-connection-editor$"] floating enable
 	[app_id="firetools"] floating enable
 	[app_id="(pavucontrol|psensor)"] floating enable
-
 }
 for_window {
     [instance="anydesk"] $float
@@ -272,10 +286,10 @@ for_window {
     [window_role="bubble"] floating enable
     [window_role="task_dialog"] floating enable
     [window_role="Preferences"] floating enable
-    [window_type="dialog"] floating enable
-    [window_type="menu"] floating enable
 	[window_role="GtkFileChooserDialog"] resize set 800 600
 	[window_role="GtkFiileChooserDialog"] move position center
+    [window_type="dialog"] floating enable
+    [window_type="menu"] floating enable
 }
 
 # for_window {
@@ -302,15 +316,23 @@ for_window {
 exec blueman-applet
 exec nm-applet --indicator
 exec --no-startup-id flameshot
-exec megasync
+exec --no-startup-id dunst --config $workdir/dunst/config
+exec --no-startup-id morgen
+exec --no-startup-id albert
+exec --no-startup-id pot
+# check, maybe not started
+exec --no-startup-id megasync 
+# exec_always ulauncher
 # exec --no-startup-id wlsunset
-exec_always --no-startup-id clipcatd --config $workdir/clipcat/clipcat.toml
+# exec_always --no-startup-id clipcatd --config $workdir/clipcat/clipcat.toml
+# exec ringboard-server # installed as systemd unit
 
-exec gnome-keyring-daemon -r -d
 exec dbus-daemon --session --address=unix:path=$XDG_RUNTIME_DIR/bus_session_socket
 exec /usr/bin/Xwayland
 exec --nostartup-id light -S 75
 exec --no-startup-id /usr/lib/xfce-polkit/xfce-polkit
+exec --no-startup-id gnome-keyring-daemon -r -d
+exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP=sway XDG_SESSION_DESKTOP=sway
 exec_always --no-startup-id setwall random ~/Pictures/wallpapers/ -c sway
 
 # exe --no-startup-id xsettingsd --config $workdir/xsettingsd
@@ -341,5 +363,5 @@ exec_always {
 include $HOME/.config/sway/config.d/*
 include $HOME/.config/sway/themes/catppuccin-mocha
 
+exec $scripts/sway_automount
 exec_always $scripts/sway_autostart
-exec_always $scripts/sway_automount
