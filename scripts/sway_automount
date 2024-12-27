@@ -1,26 +1,27 @@
 #!/usr/bin/env bash
 
-# ENVS
-WORKDIR="$HOME/.config/i3"
+mount_disk() {
+    local label="$1"
+ 
+    if udisksctl mount -b "/dev/disk/by-label/$label"; then
+        notify-send -u low -h string:x-dunst-stack-tag:automount "Mounted $label"
+    else
+        notify-send -u crit -h string:x-dunst-stack-tag:automount "Failed to mount <$label>"
+    fi
+}
 
-# mount disks
-if mount | grep -q "takimoysha/segment-1"; then
-	notify-send -u low -h string:x-dunst-stack-tag:automount "Already mounted Segment-1"
-else
-  sleep 1;
+# # mount disks
+# if mount | grep -q "takimoysha/segment-1"; then
+#     notify-send -u low -h string:x-dunst-stack-tag:automount "Already mounted Segment-1"
+# else
+#     sleep 1    
+#     # code ...
+# fi
 
-	if udisksctl mount -b /dev/disk/by-label/segment-1; then
-		notify-send -u low -h string:x-dunst-stack-tag:automount "Mounted Segment-1"
-	else
-		notify-send -u crit -h string:x-dunst-stack-tag:automount "Failed to mount <SEGMENT-1>"
-	fi
+sleep 1;
 
-	if udisksctl mount -b /dev/disk/by-label/devlab; then
-		notify-send -u low -h string:x-dunst-stack-tag:automount "Mounted devlab"
-	else
-		notify-send -u crit -h string:x-dunst-stack-tag:automount "Failed to mount <DEVLAB>"
-	fi
-
-fi
+mount_disk "segment-1"
+mount_disk "devlab"
+mount_disk "p-media"
 
 return 0
