@@ -103,7 +103,7 @@ bindcode $mod+40 exec --no-startup-id albert show
 bindsym Print exec flameshot gui
 
 # bindsym $ALT+F1 exec --no-startup-id $scripts/rofi_launcher
-bindsym $ALT+F1 exec curl "127.0.0.1:60828/"
+# bindsym $ALT+F1 exec ...
 bindsym $ALT+F2 exec --no-startup-id thunar
 bindsym $ALT+F3 exec --no-startup-id neovide
 bindsym $ALT+F4 exec --no-startup-id $term --class floating -e ringboard-tui
@@ -255,7 +255,7 @@ for_window [class=".*"] title_format "%title"
 
 for_window {
     [app_id="pot"] $float, resize set 1000 600
-    [app_id="pot" title="Translate"] $float, resize set 400 600, move position 1600 10
+    [app_id="pot" title="Translate"] $float, resize set 400 600, move position 1500 10
     [app_id="albert" title="Settings — Albert"] $float, resize set 1000 600
     [app_id="floating"] $float, resize set 1000 600
     [app_id="flameshot"] $float
@@ -267,15 +267,19 @@ for_window {
     # [app_id="thunar" title="File Operation Progress"] floating enable, resize set 400 160
     # [app_id="thunar" title="^Copying.*|^Confirm.*|^File.*|^Create.*|^Select.*"] floating enable
     [app_id="xarchiver"] $float, resize set 800 500
-    [app_id="firefox" title="^Picture-in-Picture$"] $float sticky enable, move position 1400 700
 	[app_id="(?i)mpv"] floating enable
 	[app_id="pavucontrol"] floating enable
 	[app_id="nm-connection-editor$"] floating enable
 	[app_id="firetools"] floating enable
 	[app_id="(pavucontrol|psensor)"] floating enable
-	[app_id="Meld"] floating enable, resize set 600 400
+	[app_id="Meld"] floating enable, resize set 800 600
+	[app_id="io.missioncenter.MissionCenter"] floating enable, resize set 800 600
+    [title="^Picture-in-Picture$"] $float sticky enable, move position 1400 700
+    [title="^Picture in Picture$"] $float sticky enable, move position 1400 700
 }
+
 for_window {
+	[instance="vlc"] floating enable
     [instance="anydesk"] $float
     [instance="gpartedbin"] floating enable
     [instance="megasync"] floating enable, move position mouse
@@ -316,7 +320,7 @@ for_window {
 exec blueman-applet
 exec nm-applet --indicator
 exec --no-startup-id flameshot
-exec --no-startup-id dunst --config $workdir/dunst/config
+exec --no-startup-id dunst -conf $workdir/sway/dunst/dunstrc
 # exec --no-startup-id morgen
 exec --no-startup-id albert
 exec --no-startup-id pot

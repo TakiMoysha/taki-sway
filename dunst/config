@@ -17,21 +17,19 @@
     #
     # If this option is set to mouse or keyboard, the monitor option
     # will be ignored.
-    follow = none
+    follow = mouse
 
     ### Geometry ###
 
     # The width of the window, excluding the frame.
     # dynamic width from 0 to 300
-    # width = (0, 300)
+    width = (300, 300)
     # constant width of 300
-    width = (100, 300)
 
     # The height of a single notification, excluding the frame.
     # dynamic height from 0 to 300
-    height = (0, 300)
+    height = (40, 300)
     # constant height of 300
-    # height = 300
     # NOTE: Dunst from version 1.11 and older don't support dynamic height
     #       and the given value is treated as the maximum height
 
@@ -40,12 +38,14 @@
 
     # Offset from the origin
     # NOTE: Dunst from version 1.11 and older use this alternative notation
-    # offset = 10x50
-    offset = (5, 15)
+    offset = (10, 48)
+    # offset = (15, 15)
 
     # Scale factor. It is auto-detected if value is 0.
 	# NOTE: The screenshot was made with scale = 2
     scale = 0
+
+    corner_radius = 0
 
     # Maximum number of notification (0 means no limit)
     notification_limit = 10
@@ -58,7 +58,7 @@
 
     # Set the progress bar height. This includes the frame, so make sure
     # it's at least twice as big as the frame width.
-    progress_bar_height = 14
+    progress_bar_height = 8
 
     # Set the frame width of the progress bar
     progress_bar_frame_width = 0
@@ -70,7 +70,7 @@
     progress_bar_max_width = 300
 
     # Corner radius for the progress bar. 0 disables rounded corners.
-    progress_bar_corner_radius = 50
+    progress_bar_corner_radius = 4
 
     # Define which corners to round when drawing the progress bar. If progress_bar_corner_radius
     # is set to 0 this option will be ignored.
@@ -96,16 +96,16 @@
     # notifications.
     # Set to 0 to disable.
     # If gap_size is greater than 0, this setting will be ignored.
-    separator_height = 6
+    separator_height = 3
 
     # Padding between text and separator.
-    padding = 10
+    padding = 14
 
     # Horizontal padding.
-    horizontal_padding = 8
+    horizontal_padding = 10
 
     # Padding between text and icon.
-    text_icon_padding = 12
+    text_icon_padding = 4
 
     # Defines width in pixels of frame around the notification window.
     # Set to 0 to disable.
@@ -118,7 +118,7 @@
     # If value is greater than 0, separator_height will be ignored and a border
     # of size frame_width will be drawn around each notification instead.
     # Click events on gaps do not currently propagate to applications below.
-    gap_size = 6
+    gap_size = 0
 
     # Define a color for the separator.
     # possible values are:
@@ -134,7 +134,7 @@
     #  * urgency_ascending: sort by urgency (low then normal then critical)
     #  * urgency_descending: sort by urgency (critical then normal then low)
     #  * update: sort by update (most recent always at the top)
-    sort = yes
+    sort = update
 
     # Don't remove messages, if the user is idle (no mouse or keyboard input)
     # for longer than idle_threshold seconds.
@@ -145,13 +145,18 @@
 
     ### Text ###
 
-    font = Fira Mono 12
+    # font = Liberation Mono 10
+    # font = Roboto 10
+    font = Fira Mono 10
 
     # The spacing between lines.  If the height is smaller than the
     # font height, it will get raised to the font height.
-    line_height = 0
+    line_height = 2
 
-    # Possible values are:
+    # Split notifications into multiple lines
+    word_wrap = yes
+
+    # Possible values are (<http://developer.gnome.org/pango/stable/PangoMarkupFormat.html>):
     # full: Allow a small subset of html markup in notifications:
     #        <b>bold</b>
     #        <i>italic</i>
@@ -189,16 +194,15 @@
 
     # Alignment of message text.
     # Possible values are "left", "center" and "right".
-    alignment = left
+    alignment = right
 
     # Vertical alignment of message text and icon.
     # Possible values are "top", "center" and "bottom".
     vertical_alignment = center
 
-    # Show age of message if message is older than show_age_threshold
-    # seconds.
+    # Show age of message if message is older than show_age_threshold seconds.
     # Set to -1 to disable.
-    show_age_threshold = -1
+    show_age_threshold = 60
 
     # Specify where to make an ellipsis in long lines.
     # Possible values are "start", "middle" and "end".
@@ -223,9 +227,9 @@
     enable_recursive_icon_lookup = true
 
     # Set icon theme (only used for recursive icon lookup)
-    icon_theme = Adwaita, Papirus, Papirus-Dark
+    # icon_theme = Adwaita, Papirus, Papirus-Dark
     # You can also set multiple icon themes, with the leftmost one being used first.
-    # icon_theme = "Adwaita, breeze"
+    icon_theme = "Adwaita"
 
     # Align icons left/right/top/off
     icon_position = right
@@ -236,8 +240,7 @@
     min_icon_size = 32
 
     # Scale larger icons down to this size, set to 0 to disable
-    max_icon_size = 128
-
+    max_icon_size = 48
     # Paths to default icons (only necessary when not using recursive icon lookup)
     icon_path = /usr/share/icons/gnome/16x16/status/:/usr/share/icons/gnome/16x16/devices/
 
@@ -253,10 +256,10 @@
     ### Misc/Advanced ###
 
     # dmenu path.
-    dmenu = /usr/bin/dmenu -l 10 -p dunst:
+    dmenu = "/usr/bin/rofi -show drun -l 10"
 
     # Browser for opening urls in context menu.
-    browser = /usr/bin/xdg-open
+    browser = "/usr/bin/xdg-open"
 
     # Always run rule-defined scripts, even if the notification is suppressed
     always_run_script = true
@@ -272,7 +275,7 @@
     # corners.
     # The radius will be automatically lowered if it exceeds half of the
     # notification height to avoid clipping text and/or icons.
-    corner_radius = 10
+    corner_radius = 0
 
     # Define which corners to round when drawing the window. If the corner radius
     # is set to 0 this option will be ignored.
@@ -324,9 +327,10 @@
     # * context_all: Open context menu for all notifications.
     # These values can be strung together for each mouse event, and
     # will be executed in sequence.
-    mouse_left_click = close_current
-    mouse_middle_click = do_action, close_current
-    mouse_right_click = close_all
+    mouse_left_click = do_action, close_current
+    mouse_middle_click = context_all
+    mouse_right_click = close_current
+
 
 # Experimental features that may or may not work correctly. Do not expect them
 # to have a consistent behaviour across releases.
@@ -338,36 +342,66 @@
     # where there are multiple screens with very different dpi values.
     per_monitor_dpi = false
 
-
+# IMPORTANT: colors have to be defined in quotation marks.
+# Otherwise the "#" and following would be interpreted as a comment.
 [urgency_low]
-    # IMPORTANT: colors have to be defined in quotation marks.
-    # Otherwise the "#" and following would be interpreted as a comment.
-    background = "#222222"
-    foreground = "#ffffff"
-	highlight = "#722ae6, #e4b5cb"
-    timeout = 20
+    timeout = 5
     # Icon for notifications with low urgency
     #default_icon = dialog-information
 
+    background = "#1e222a"
+    # background = "#222222"
+
+    foreground = "#f9f9f9"
+    # foreground = "#ffffff"
+
+    # frame_color = "#da6e89"
+
+    # highlight = "#f48ee8"
+    # highlight = "#722ae6, #e4b5cb"
+
+
 [urgency_normal]
-    background = "#222222"
-    foreground = "#ffffff"
-	frame_color = "#5e5086"
-	highlight = "#722ae6, #e4b5cb"
-    timeout = 20
+    timeout = 10
     override_pause_level = 30
     # Icon for notifications with normal urgency
-    default_icon = dialog-information
+    # default_icon = dialog-information
+
+    background = "#1e222a"
+    # background = "#222222"
+
+    foreground = "#f9f9f9"
+    # foreground = "#ffffff"
+
+	frame_color = "#5e5086"
+    # frame_color = "#da6e89"
+
+	highlight = "#722ae6, #e4b5cb"
+    # highlight = "#f48ee8"
+
+
+
 
 [urgency_critical]
-    background = "#222222"
-    foreground = "#ffffff"
-    frame_color = "#d54e53"
-	highlight = "#d54e53, #f0f0f0"
     timeout = 0
     override_pause_level = 60
     # Icon for notifications with critical urgency
-    default_icon = dialog-warning
+    # default_icon = dialog-warning
+
+    # background = "#222222"
+    # background = "#1C1E26"
+    background = "#1e222a"
+
+    foreground = "#f9f9f9"
+    # foreground = "#ffffff"
+    # foreground = "#e06c75"
+
+    frame_color = "#d54e53"
+    # frame_color = "#e06c75"
+
+    # highlight = "#f48ee8"
+	# highlight = "#d54e53, #f0f0f0"
+
 
 # Every section that isn't one of the above is interpreted as a rules to
 # override settings for certain messages.
