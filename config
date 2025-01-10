@@ -39,7 +39,6 @@ set $workdir ~/.config/sway
 set $scripts ~/.config/sway/scripts
 
 set $term alacritty --config-file $workdir/alacritty/config.toml
-# dunstify / notify-send / dunst
 set $send-notify exec --no-startup-id notify-send -u low -h string:x-dunst-stack-tag:sway
 
 # font pango:DejaVu SansMono 8
@@ -320,7 +319,7 @@ for_window {
 exec blueman-applet
 exec nm-applet --indicator
 exec --no-startup-id flameshot
-exec --no-startup-id dunst -conf $workdir/sway/dunst/dunstrc
+exec --no-startup-id dunst -conf $workdir/dunst/config
 # exec --no-startup-id morgen
 exec --no-startup-id albert
 exec --no-startup-id pot
