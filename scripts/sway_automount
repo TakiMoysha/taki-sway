@@ -10,17 +10,8 @@ mount_disk() {
     fi
 }
 
-# # mount disks
-# if mount | grep -q "takimoysha/segment-1"; then
-#     notify-send -u low -h string:x-dunst-stack-tag:automount "Already mounted Segment-1"
-# else
-#     sleep 1    
-#     # code ...
-# fi
-
 sleep 1;
 
-mount_disk "segment-1"
 mount_disk "devlab"
 mount_disk "p-media"
 
