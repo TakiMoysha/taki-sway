@@ -267,7 +267,7 @@ for_window {
     # [app_id="(?i)thunar"] floating enable, resize set 1000 600
     # [app_id="thunar" title="File Operation Progress"] floating enable, resize set 400 160
     # [app_id="thunar" title="^Copying.*|^Confirm.*|^File.*|^Create.*|^Select.*"] floating enable
-    [app_id="xarchiver"] $float, resize set 800 500
+    [instance="xarchiver"] $float, resize set 900 600
 	[app_id="(?i)mpv"] floating enable
 	[app_id="pavucontrol"] floating enable
 	[app_id="nm-connection-editor$"] floating enable
@@ -368,4 +368,4 @@ include $HOME/.config/sway/config.d/*
 include $HOME/.config/sway/themes/catppuccin-mocha
 
 exec $scripts/sway_automount
-exec_always $scripts/sway_autostart
+exec $scripts/sway_autostart
