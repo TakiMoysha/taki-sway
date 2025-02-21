@@ -91,7 +91,8 @@ bindsym $mod+m bar mode toggle
 # Use Mouse+$mod to drag floating windows to their wanted position
 floating_modifier $mod
 
-bindsym $mod+Shift+q kill
+# bindsym $mod+Shift+q kill
+bindcode $mod+Shift+24 kill
 bindsym $mod+Return exec --no-startup-id $term
 # bindcode $mod+40 exec "rofi -modi drun,run -show drun"
 # bindcode $mod+40 exec --no-startup-id rofi -x11 -show drun

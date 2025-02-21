@@ -12,3 +12,7 @@ Copy repository and create link to from `/home/takimoysha/dotfiles/taki-sway ~/.
 - ringboard (clipboard-history) - https://github.com/SUPERCILEX/clipboard-history/tree/master
 - russ - rss reader (added linux feed: https://archlinux.org/feeds/news/) - https://github.com/ckampfe/russ
 - albert - plugin-based keyboard launcher
+
+##
+
+[Keycodes / github.com](https://github.com/i3/i3/blob/next/etc/config.keycodes)
