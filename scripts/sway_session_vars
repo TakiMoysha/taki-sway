@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+check_variables() {
+    local var_name="$1"
+
+    if [ -z "${!var_name}" ]; then
+        notify-send -u critical "$var_name is not set"
+    fi
+}
+
+check_variables "XDG_CONFIG_HOME"
+check_variables "XDG_STATE_HOME"
+check_variables "XDG_CACHE_HOME"
+check_variables "XDG_DATA_HOME"
+
+exit 0
+

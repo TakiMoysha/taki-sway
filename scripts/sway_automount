@@ -13,6 +13,6 @@ mount_disk() {
 sleep 1;
 
 mount_disk "devlab"
-mount_disk "p-media"
+mount_disk "linux-media"
 
-return 0
+exit 0

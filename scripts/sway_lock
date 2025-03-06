@@ -9,3 +9,4 @@ swaylock --image ~/Pictures/wallpapers/wallpaper_1.jpg
 
 pkill --newest swayidle
 
+exit 0
