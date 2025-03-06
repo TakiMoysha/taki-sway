@@ -103,7 +103,7 @@ bindcode $mod+40 exec --no-startup-id albert show
 bindsym Print exec flameshot gui
 
 # bindsym $ALT+F1 exec --no-startup-id $scripts/rofi_launcher
-# bindsym $ALT+F1 exec ...
+bindsym $ALT+F1 exec --no-startup-id clipcat-menu --config $workdir/clipcat/clipcat-menu.toml
 bindsym $ALT+F2 exec --no-startup-id thunar
 bindsym $ALT+F3 exec --no-startup-id neovide
 bindsym $ALT+F4 exec --no-startup-id $term --class floating -e ringboard-tui
@@ -249,7 +249,7 @@ bar {
 title_align center
 
 # * [!] shadows enable - not working
-set $float border pixel 1, floating enable
+set $float border pixel 3, floating enable
 
 for_window [class=".*"] title_format "%title"
 
@@ -268,7 +268,7 @@ for_window {
     # [app_id="(?i)thunar"] floating enable, resize set 1000 600
     # [app_id="thunar" title="File Operation Progress"] floating enable, resize set 400 160
     # [app_id="thunar" title="^Copying.*|^Confirm.*|^File.*|^Create.*|^Select.*"] floating enable
-    [instance="xarchiver"] $float, resize set 900 600
+    [app_id="xarchiver"] $float, resize set 900 600
 	[app_id="(?i)mpv"] floating enable
 	[app_id="pavucontrol"] floating enable
 	[app_id="nm-connection-editor$"] floating enable
@@ -276,11 +276,13 @@ for_window {
 	[app_id="(pavucontrol|psensor)"] floating enable
 	[app_id="Meld"] floating enable, resize set 800 600
 	[app_id="io.missioncenter.MissionCenter"] floating enable, resize set 800 600
-    [title="^Picture-in-Picture$"] $float sticky enable, move position 1400 700
-    [title="^Picture in Picture$"] $float sticky enable, move position 1400 700
+    [title="^Picture-in-Picture$"] $float sticky enable, move position 1400 700, resize set 367 207 px, sticky enable
+    [title="^Picture in Picture$"] $float sticky enable, move position 1400 700, resize set 367 207 px, sticky enable
 }
 
 for_window {
+    [instance="VirtualBox Machine|VirtualBox Manager"] $float, resize set 800 600
+    [instance="VirtualBox"] $float
 	[instance="vlc"] floating enable
     [instance="anydesk"] $float
     [instance="gpartedbin"] floating enable
@@ -329,7 +331,7 @@ exec --no-startup-id megasync
 exec_always --no-startup-id albert
 # exec_always ulauncher
 # exec --no-startup-id wlsunset
-# exec_always --no-startup-id clipcatd --config $workdir/clipcat/clipcat.toml
+exec_always --no-startup-id clipcatd --config $workdir/clipcat/clipcat.toml
 # exec ringboard-server # installed as systemd unit
 
 exec dbus-daemon --session --address=unix:path=$XDG_RUNTIME_DIR/bus_session_socket
@@ -369,4 +371,4 @@ include $HOME/.config/sway/config.d/*
 include $HOME/.config/sway/themes/catppuccin-mocha
 
 exec $scripts/sway_automount
-exec $scripts/sway_autostart
+exec $scripts/sway_session_vars
