@@ -23,9 +23,9 @@ backlight = [
 
 [[block]]
 block = "custom"
-command = "task _get $(task next limit:1 | tail -n +4 | head -n 1| sed 's/^ //' | cut -d ' ' -f1).description"
+command = "task _get $(task current_tasks limit:1 | tail -n +4 | head -n 1| sed 's/^ //' | cut -d ' ' -f1).description"
 format = "$text"
-interval = 10
+interval = 5
 
 [[block]]
 block = "taskwarrior"
