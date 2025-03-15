@@ -2,6 +2,7 @@
 icons = "awesome4"
 
 [icons.overrides]
+bat_charging = "&#xf1e6;"
 backlight = [
   "",
   "",
@@ -19,7 +20,28 @@ backlight = [
   "",
   "",
 ]
-bat_charging = "|^| "
+
+[[block]]
+block = "custom"
+command = "task _get $(task next limit:1 | tail -n +4 | head -n 1| sed 's/^ //' | cut -d ' ' -f1).description"
+format = "$text"
+interval = 10
+
+[[block]]
+block = "taskwarrior"
+interval = 30
+format = " $icon $count.eng(w:1) T:$filter_name "
+format_singular = " $icon $count T:$filter_name "
+format_everything_done = ""
+warning_threshold = 10
+critical_threshold = 20
+data_location = "$XDG_STATE_HOME/task"
+# [[block.filters]]
+# name = "active task"
+# filter = "+PENDING +OVERDUE or +DUETODAY"
+# [[block.filters]]
+# name = "dotfiles"
+# filter = "project:dotfiles"
 
 [[block]]
 block = "cpu"
