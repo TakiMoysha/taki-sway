@@ -63,22 +63,28 @@ bindsym $mod+Shift+Down move down
 bindsym $mod+Shift+Up move up
 bindsym $mod+Shift+Right move right
 
+## ========================== REVIEW
+bindsym $mod+Shift+e split toggle 
+
 bindsym $mod+f fullscreen toggle
 # bindsym $mod+c split h, $send-notify 'Horizontal Focus'
 # bindsym $mod+v split v, $send-notify 'Vertical Focus'
-bindsym $mod+q split toggle 
+## ========================== END
 
+## ========================== REVIEW
 bindsym $mod+e layout toggle split
-bindsym $mod+u layout toggle, $send-notify "Layout: Toggle"
+bindsym $mod+Shift+u layRut toggle, $send-notify "Layout: Toggle"
+
 bindsym $mod+w layout tabbed, $send-notify "Layout: Tabbed"
 bindsym $mod+s layout stacking, $send-notify "Layout: Stacking"
+## ========================== END
 
 bindsym $mod+Shift+space floating toggle
 
 bindsym $mod+space focus mode_toggle
 
-bindsym $mod+p focus parent
-bindsym $mod+c focus child
+bindsym $mod+Shift+p focus parent
+bindsym $mod+p focus child
 
 bindsym $mod+Shift+s sticky toggle
 
@@ -155,7 +161,7 @@ bindsym $mod+Shift+0 move container to workspace number $ws10
 bindsym $mod+Shift+b move container to workspace back_and_forth; workspace back_and_forth
 
 bindsym $mod+Shift+r reload, $send-notify 'Reload'
-bindsym $mod+Shift+e exec swaynag -t warning -m 'Do you really want to exit sway?' -b 'Exit sway' 'swaymsg exit' --button-margin-right=10px
+# bindsym $mod+... exec swaynag -t warning -m 'Do you really want to exit sway?' -b 'Exit sway' 'swaymsg exit' --button-margin-right=10px
 
 bindsym $mod+r mode "resize"
 mode "resize" {
@@ -291,6 +297,7 @@ for_window {
     [instance="megasync"] floating enable, move position mouse
     [instance="update_installer"] floating enable	
 }
+
 for_window {
     [window_role="pop-up"] floating enable
     [window_role="bubble"] floating enable
