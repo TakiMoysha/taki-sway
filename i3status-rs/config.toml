@@ -23,22 +23,23 @@ backlight = [
 
 [[block]]
 block = "custom"
-command = "task current_tasks limit:1 | awk 'NR==4 {for (i=2; i<=NF; i++) printf $i (i<NF ? \" \" : \"\"); print \"\"}'"
+# command = "task current_tasks limit:1 | awk 'NR==4 {for (i=2; i<=NF; i++) printf $i (i<NF ? \" \" : \"\"); print \"\"}'"
+command = "task current_tasks limit:1 | awk 'NR==4'"
 format = "$text"
 interval = 8
 
-[[block]]
-block = "taskwarrior"
-interval = 30
-format = " $icon $filter_name:$count.eng(w:1) "
-format_singular = " $icon $filter_name:$count.eng(w:1) "
-format_everything_done = ""
-warning_threshold = 10
-critical_threshold = 20
-data_location = "$XDG_STATE_HOME/task"
-[[block.filters]]
-name = "backlog"
-filter = "+PENDING or +OVERDUE or +DUETODAY"
+# [[block]]
+# block = "taskwarrior"
+# interval = 30
+# format = " $icon $filter_name:$count.eng(w:1) "
+# format_singular = " $icon $filter_name:$count.eng(w:1) "
+# format_everything_done = ""
+# warning_threshold = 10
+# critical_threshold = 20
+# data_location = "$XDG_STATE_HOME/task"
+# [[block.filters]]
+# name = "backlog"
+# filter = "+PENDING or +OVERDUE or +DUETODAY"
 
 [[block]]
 block = "cpu"
@@ -76,10 +77,6 @@ format_alt = " SWAP: $swap_used_percents.eng(w:2) "
 # block = "backlight"
 # invert_icons = false
 
-# [[block]]
-# block = "notify"
-# driver = "dunst"
-
 [[block.click]]
 button = "right"
 action = "show"
@@ -112,16 +109,21 @@ interval = 1
 [[block]]
 block = "sound"
 [[block.click]]
-button = "left"
+button = "middle"
 cmd = "pavucontrol"
 
 [[block]]
 block = "docker"
+
 [[block]]
 block = "battery"
 interval = 10
 format = " $percentage $icon "
-not_charging_format = " $icon  "
+not_charging_format = " $percentage $icon ($time_remaining)"
+
+[[block]]
+block = "notify"
+driver = "dunst"
 
 [[block]]
 block = "keyboard_layout"
