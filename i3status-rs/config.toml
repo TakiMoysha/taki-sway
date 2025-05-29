@@ -112,8 +112,10 @@ block = "sound"
 button = "middle"
 cmd = "pavucontrol"
 
-[[block]]
-block = "docker"
+# [[block]]
+# block = "docker"
+# socket_path = "/run/user/1000/podman/podman.sock" # podman.socket installed via `systemctl --user enable podman.sock`
+# socket_path = "/run/podman/podman.sock" # podman.socket default enable
 
 [[block]]
 block = "battery"

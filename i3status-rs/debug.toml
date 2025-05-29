@@ -1,0 +1,47 @@
+[icons]
+icons = "awesome4"
+
+[icons.overrides]
+bat_charging = "&#xf1e6;"
+backlight = [
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+  "",
+]
+
+# [[block]]
+# block = "custom"
+# # command = "task current_tasks limit:1 | awk 'NR==4 {for (i=2; i<=NF; i++) printf $i (i<NF ? \" \" : \"\"); print \"\"}'"
+# command = "task current_tasks limit:1 | awk 'NR==4'"
+# format = "$text"
+# interval = 8
+
+# [[block]]
+# block = "taskwarrior"
+# interval = 30
+# format = " $icon $filter_name:$count.eng(w:1) "
+# format_singular = " $icon $filter_name:$count.eng(w:1) "
+# format_everything_done = ""
+# warning_threshold = 10
+# critical_threshold = 20
+# data_location = "$XDG_STATE_HOME/task"
+# [[block.filters]]
+# name = "backlog"
+# filter = "+PENDING or +OVERDUE or +DUETODAY"
+
+[[block]]
+block = "docker"
+# socket_path = "/run/user/1000/podman/podman.sock" # $XDG_RUNTIME_DIR/podman/podman.sock
+socket_path = "/run/podman/podman.sock"

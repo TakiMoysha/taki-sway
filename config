@@ -31,6 +31,14 @@
 # keycode 199 = F8
 # keycode 200 = F9
 
+
+## ==================================== PREINTALL
+include $HOME/.config/sway/config.d/*
+include $HOME/.config/sway/themes/catppuccin-mocha
+
+exec $scripts/sway_automount
+exec $scripts/sway_session_vars
+
 ## ==================================== CONFIG
 set $mod Mod4
 set $ALT Mod1
@@ -101,16 +109,12 @@ floating_modifier $mod
 # bindsym $mod+Shift+q kill
 bindcode $mod+Shift+24 kill
 bindsym $mod+Return exec --no-startup-id $term
-# bindcode $mod+40 exec "rofi -modi drun,run -show drun"
-# bindcode $mod+40 exec --no-startup-id rofi -x11 -show drun
-# bindcode $mod+40 exec --no-startup-id fuzzel --config $workdir/fuzzel/blue.ini 
-bindcode $mod+40 exec --no-startup-id albert show
-# bindcode $mod+40 exec --no-startup-id ulauncher-toggle
+bindcode $mod+40 exec rofi -theme $workdir/rofi/config.rasi -show drun
 # bindcode $mod+40 exec --no-startup-id wofi --conf $workdir/wofi/config --style $workdir/wofi/style.css
 bindsym Print exec flameshot gui
 
 # bindsym $ALT+F1 exec --no-startup-id $scripts/rofi_launcher
-bindsym $ALT+F1 exec --no-startup-id clipcat-menu --config $workdir/clipcat/clipcat-menu.toml
+bindsym $ALT+F1 exec --no-startup-id clipcat-menu --config $workdir/clipcat/clipcat.toml
 bindsym $ALT+F2 exec --no-startup-id thunar
 bindsym $ALT+F3 exec --no-startup-id neovide
 bindsym $ALT+F4 exec --no-startup-id $term --class floating -e ringboard-tui
@@ -275,6 +279,8 @@ for_window {
 	[app_id="io.missioncenter.MissionCenter"] floating enable, resize set 800 600
 	[app_id="sublime_merge"] $float
 	[app_id="zoom"] $float
+	[app_id="kvantumpreview"] $float
+	[app_id="kvantummanager"] $float
     [title="^Picture-in-Picture$"] $float, sticky enable, move position 1400 700, resize set 367 207 px, sticky enable
     [title="^Picture in Picture$"] $float, sticky enable, move position 1400 700, resize set 367 207 px, sticky enable
     [title="^Library$"] $float, sticky enable
@@ -330,10 +336,10 @@ for_window {
 # }
 
 exec swayidle -w \
-    timeout 300 '$user_lock' \
-    timeout 400 'swaymsg "output * dpms off"' \
+    timeout 600 '$user_lock' \
+    timeout 700 'swaymsg "output * dpms off"' \
          resume 'swaymsg "output * dpms on"' \
-    timeout 600 '$os_suspend' \
+    timeout 1000 '$os_suspend' \
     before-sleep '$user_lock'
 
 exec blueman-applet
@@ -344,7 +350,7 @@ exec --no-startup-id dunst -conf $workdir/dunst/config
 # exec --no-startup-id morgen
 # check, maybe not started
 exec --no-startup-id megasync 
-exec_always --no-startup-id albert
+# exec --no-startup-id albert
 # exec_always ulauncher
 # exec --no-startup-id wlsunset
 exec --no-startup-id clipcatd --config $workdir/clipcat/clipcat.toml
@@ -352,32 +358,20 @@ exec --no-startup-id clipcatd --config $workdir/clipcat/clipcat.toml
 
 exec dbus-daemon --session --address=unix:path=$XDG_RUNTIME_DIR/bus_session_socket
 exec /usr/bin/Xwayland
-exec --nostartup-id light -S 75
+# exec --nostartup-id light -S 75
 exec --no-startup-id /usr/lib/xfce-polkit/xfce-polkit
 exec --no-startup-id gnome-keyring-daemon -r -d
 exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP=sway XDG_SESSION_DESKTOP=sway
 exec_always --no-startup-id setwall random ~/Pictures/wallpapers/ -c sway
 
-# exe --no-startup-id xsettingsd --config $workdir/xsettingsd
+# exec --no-startup-id xsettingsd --config $workdir/xsettingsd
 # exec --no-startup-id conky -c $workdir/conky/helper.conf
 # exec --no-startup-id conky -c $workdir/conky/monitoring.conf
 
-exec_always {
-    # gsettings set $gnome_schema gtk-theme Nordic
-    # gsettings set $gnome-schema icon-theme ...
-    # gsettings set $gnome-schema cursor-theme ...
-    # gsettings set $gnome-schema font-name ...
-    # gsettings set $gnome-schema monospace-font-name 'Hack 10'
-}
-
-
+# exec_always {
+#     gsettings set org.gnome.desktop.interface gtk-theme Everforest
+# }
 # exec_always import-gsettings \
 #     gtk-theme:gtk-theme-name \
 #     icon-theme:gtk-icon-theme-name \
-#     cursor-theme:gtk-cursor-theme-nam
-
-include $HOME/.config/sway/config.d/*
-include $HOME/.config/sway/themes/catppuccin-mocha
-
-exec $scripts/sway_automount
-exec $scripts/sway_session_vars
+#     cursor-theme:gtk-cursor-theme-name
