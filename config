@@ -224,7 +224,8 @@ input type:keyboard {
 
 bar {
     id system_bar
-    status_command /home/takimoysha/devlab/projects/i3status-rust/target/release/i3status-rs $workdir/i3status-rs/config.toml
+    # status_command /home/takimoysha/devlab/projects/i3status-rust/target/release/i3status-rs $workdir/i3status-rs/config.toml
+    status_command /home/takimoysha/devlab/projects/i3status-rust/target/release/i3status-rs $workdir/i3status-rs/minimum.toml
     # status_command i3status-rs $workdir/i3status-rs/config.toml
 
     # tray
