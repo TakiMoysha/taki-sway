@@ -130,6 +130,12 @@ driver = "dunst"
 [[block]]
 block = "keyboard_layout"
 driver = "sway"
+# sway_kb_identifier = "1:1:AT_Translated_Set_2_keyboard"
 [block.mappings]
-"English (US)" = "US"
-"Russian (N/A)" = "RU"
+# "English (US)" = "US"
+# "Russian (N/A)" = "RU"
+"English" = "US"
+"Russian" = "RU"
+
+
+

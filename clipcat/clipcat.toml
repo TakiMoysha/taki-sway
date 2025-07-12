@@ -49,7 +49,7 @@ enable = true
 
 [desktop_notification]
 # Enable desktop notification.
-enable = true
+enable = false
 # Path of a icon, the given icon will be displayed on desktop notification,
 # if your desktop notification server supports showing a icon.
 # If this value is not provided, the value `accessories-clipboard` is applied.
