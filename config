@@ -183,6 +183,8 @@ mode "resize" {
     bindsym s resize shrink width 10 px or 10 ppt, resize shrink height 10 px or 10 ppt
     bindsym b resize grow width 10 px or 10 ppt, resize grow height 10 px or 10 ppt
 
+    bindsym Shift+s resize set height 400 px, resize set width 600 px
+
     bindsym Return mode "default"
     bindsym Escape mode "default"
 }
@@ -301,9 +303,13 @@ for_window {
 }
 
 for_window {
+	[app_id="vlc"] floating enable, resize set 800 500, move position 1100 500
+	[instance="vlc"] floating enable, resize set 800 500, move position 1100 500
+}
+
+for_window {
     [instance="VirtualBox Machine|VirtualBox Manager"] $float, resize set 800 600
     [instance="VirtualBox"] $float
-	[instance="vlc"] floating enable, resize set 800 500, move position 1100 500
     [instance="anydesk"] $float
     [instance="gpartedbin"] floating enable
     [instance="megasync"] $float, move position mouse
