@@ -3,7 +3,7 @@
 mount_disk() {
     local label="$1"
  
-    if udisksctl mount -b "/dev/disk/by-label/$label"; then
+    if udisksctl mount -b $label; then
         notify-send -u low -h string:x-dunst-stack-tag:automount "Mounted $label"
     else
         notify-send -u crit -h string:x-dunst-stack-tag:automount "Failed to mount <$label>"
@@ -12,7 +12,8 @@ mount_disk() {
 
 sleep 1;
 
-mount_disk "devlab"
-mount_disk "linux-media"
+mount_disk "/dev/disk/by-label/devlab"
+mount_disk "/dev/disk/by-label/linux-media"
+mount_disk "/dev/disk/by-partlabel/linux-home"
 
 exit 0
