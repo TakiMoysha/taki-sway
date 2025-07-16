@@ -260,6 +260,7 @@ set $float border pixel 3, floating enable
 
 for_window [class=".*"] title_format "%title"
 for_window [class="float"] $float
+for_window [app_id="float"] $float
 
 for_window {
     # [app_id="pot"] $float, resize set 600 800
