@@ -367,7 +367,7 @@ exec --no-startup-id megasync
 # exec --no-startup-id albert
 # exec_always ulauncher
 # exec --no-startup-id wlsunset
-exec --no-startup-id clipcatd --config $workdir/clipcat/clipcat.toml
+exec_always --no-startup-id clipcatd --config $workdir/clipcat/clipcat.toml
 # exec ringboard-server # installed as systemd unit
 
 exec dbus-daemon --session --address=unix:path=$XDG_RUNTIME_DIR/bus_session_socket
