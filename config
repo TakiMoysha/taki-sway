@@ -262,6 +262,7 @@ set $float border pixel 3, floating enable
 
 for_window [class=".*"] title_format "%title"
 for_window [class="float"] $float
+for_window [class="size-sm"] resize set 400 500
 for_window [app_id="float"] $float
 
 for_window {
@@ -367,7 +368,7 @@ exec --no-startup-id megasync
 # exec --no-startup-id albert
 # exec_always ulauncher
 # exec --no-startup-id wlsunset
-exec_always --no-startup-id clipcatd --config $workdir/clipcat/clipcat.toml
+exec_always clipcatd --config $workdir/clipcat/clipcat.toml
 # exec ringboard-server # installed as systemd unit
 
 exec dbus-daemon --session --address=unix:path=$XDG_RUNTIME_DIR/bus_session_socket
