@@ -1,0 +1,17 @@
+#!/usr/bin/env bash
+
+THEME='Everforest'
+ICONS='Luv-Folders-Dark'
+FONT='Noto Sans 9'
+CURSOR='Gigi Murin'
+
+# THEME = $(gsettings get org.gnome.desktop.interface gtk-theme | cut -d "'" -f 2)
+
+apply_themes () {
+	gsettings set org.gnome.desktop.interface gtk-theme "$THEME"
+	gsettings set org.gnome.desktop.interface icon-theme "$ICONS"
+	gsettings set org.gnome.desktop.interface cursor-theme "$CURSOR"
+	gsettings set org.gnome.desktop.interface font-name "$FONT"
+}
+
+apply_themes

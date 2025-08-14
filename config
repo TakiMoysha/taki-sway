@@ -170,20 +170,25 @@ bindsym $mod+Shift+r reload, $send-notify 'Reload'
 
 bindsym $mod+r mode "resize"
 mode "resize" {
-    bindsym j resize shrink width 8 px or 8 ppt
-    bindsym k resize grow height 8 px or 8 ppt
-    bindsym l resize shrink height 8 px or 8 ppt
-    bindsym semicolon resize grow width 8 px or 8 ppt
+    bindsym j resize shrink width 16 px or 16 ppt
+    bindsym k resize grow height 16 px or 16 ppt
+    bindsym l resize shrink height 16 px or 16 ppt
+    bindsym semicolon resize grow width 16 px or 16 ppt
 
-    bindsym Shift+j resize shrink width 3 px or 3 ppt
-    bindsym Shift+k resize grow height 3 px or 3 ppt
-    bindsym Shift+l resize shrink height 3 px or 3 ppt
-    bindsym Shift+semicolon resize grow width 3 px or 3 ppt
+    bindsym Shift+j resize shrink width 6 px or 6 ppt
+    bindsym Shift+k resize grow height 6 px or 6 ppt
+    bindsym Shift+l resize shrink height 6 px or 6 ppt
+    bindsym Shift+semicolon resize grow width 6 px or 6 ppt
 
     bindsym s resize shrink width 10 px or 10 ppt, resize shrink height 10 px or 10 ppt
     bindsym b resize grow width 10 px or 10 ppt, resize grow height 10 px or 10 ppt
 
     bindsym Shift+s resize set height 400 px, resize set width 600 px
+
+    bindsym Shift+1 move position 4 ppt 2 ppt
+    bindsym Shift+2 move position 60 ppt 2 ppt
+    bindsym Shift+K move position 4 ppt 60 ppt
+    bindsym Shift+4 move position 60 ppt 60 ppt
 
     bindsym Return mode "default"
     bindsym Escape mode "default"
