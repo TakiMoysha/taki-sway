@@ -115,8 +115,9 @@ bindsym Print exec flameshot gui
 
 # bindsym $ALT+F1 exec --no-startup-id $scripts/rofi_launcher
 bindsym $ALT+F1 exec --no-startup-id clipcat-menu --config $workdir/clipcat/clipcat.toml
-bindsym $ALT+F2 exec --no-startup-id thunar
-bindsym $ALT+F3 exec --no-startup-id neovide
+# bindsym $ALT+F2 exec --no-startup-id thunar
+bindsym $ALT+F2 exec --no-startup-id nemo
+bindsym $ALT+F3 exec --no-startup-id $scripts/neovide
 bindsym $ALT+F4 exec --no-startup-id $term --class floating -e ringboard-tui
 
 bindsym XF86MonBrightnessUp exec light -A 5
@@ -187,7 +188,7 @@ mode "resize" {
 
     bindsym Shift+1 move position 4 ppt 2 ppt
     bindsym Shift+2 move position 60 ppt 2 ppt
-    bindsym Shift+K move position 4 ppt 60 ppt
+    bindsym Shift+3 move position 4 ppt 60 ppt
     bindsym Shift+4 move position 60 ppt 60 ppt
 
     bindsym Return mode "default"
@@ -281,6 +282,7 @@ for_window {
     [app_id="qt6ct"] $float, sticky enable, border normal
     [app_id="xfce-polkit"] $float, sticky enable
     [app_id="blueman-manager"] $float
+    [app_id="(?i)nemo"] floating enable
     [app_id="(?i)thunar"] floating enable
     # [app_id="(?i)thunar"] floating enable, resize set 1000 600
     # [app_id="thunar" title="File Operation Progress"] floating enable, resize set 400 160

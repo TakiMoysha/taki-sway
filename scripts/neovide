@@ -1,0 +1,10 @@
+#!/usr/bin/env bash
+
+DIR="$HOME/.config/sway"
+
+if [[ "$DEVLAB_CODING_DIR" ]]; then
+  neovide "$DEVLAB_CODING_DIR"
+else
+  neovide
+fi
+
