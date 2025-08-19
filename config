@@ -49,6 +49,7 @@ set $scripts ~/.config/sway/scripts
 set $term alacritty --config-file $workdir/alacritty/config.toml
 set $send-notify exec --no-startup-id notify-send -u low -h string:x-dunst-stack-tag:sway
 
+exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
 
 # font pango:DejaVu SansMono 8
 
@@ -195,14 +196,14 @@ mode "resize" {
     bindsym Escape mode "default"
 }
 
-set $user_lock swaylock --config $workdir/swaylock/config
+set $lock_screen swaylock -f --config $workdir/swaylock/config
 set $os_suspend systemctl sleep
 
 set $mode_system (s)uspend, (l)ock, (e)xit, (r)eboot, (Shift+s)hutdown
 bindsym $mod+0 mode "$mode_system"
 mode "$mode_system" {
     bindsym s exec --no-startup-id $os_suspend, mode "default"
-    bindsym l exec --no-startup-id $user_lock, mode "default"
+    bindsym l exec --no-startup-id $lock_screen, mode "default"
     bindsym e exec --no-startup-id sway exit, mode "default"
     bindsym r exec --no-startup-id systemctl reboot, mode "default"
     bindsym Shift+s exec --no-startup-id systemctl poweroff, mode "default"
@@ -357,13 +358,23 @@ for_window {
 #     [title="Dropdown Launcher*"] move position center	
 # }
 
-exec swayidle -w \
-    timeout 1200 '$user_lock' \
-    timeout 1500 'swaymsg "output * dpms off"' \
-         resume 'swaymsg "output * dpms on"'
-    # timeout 1800 '$os_suspend' \
-    # before-sleep '$user_lock'
+set $tmp_light "light -G > /tmp/brightness"
+set $tmp_light_restore "light -S $([ -f /tmp/brightness ] && cat /tmp/brightness || echo 100%)"
+set $lock_screen swaylock -f --config $workdir/swaylock/config
 
+set $swayidle swayidle -w \
+    timeout 1000 '$tmp_light && light -S 10' resume $tmp_light_restore \
+    timeout 1200 'exec $lock_screen' \
+    timeout 1200 'swaymsg "output * dpms off"' \
+    resume 'swaymsg "output * dpms on"' \
+    before-sleep 'exec $lock_screen'
+
+# exec swayidle -w \
+#     timeout 1200 '$lock_screen' \
+#     timeout 1500 'swaymsg "output * dpms off"' \
+#          resume 'swaymsg "output * dpms on"' \
+#     before-sleep '$lock_screen'
+    
 exec blueman-applet
 exec nm-applet --indicator
 exec --no-startup-id flameshot
