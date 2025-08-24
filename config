@@ -115,7 +115,8 @@ bindcode $mod+40 exec rofi -theme $workdir/rofi/config.rasi -show drun
 bindsym Print exec flameshot gui
 
 # bindsym $ALT+F1 exec --no-startup-id $scripts/rofi_launcher
-bindsym $ALT+F1 exec --no-startup-id clipcat-menu --config $workdir/clipcat/clipcat.toml
+# bindsym $ALT+F1 exec --no-startup-id clipcat-menu --config $workdir/clipcat/clipcat.toml
+bindsym $ALT+F1 exec --no-startup-id clipcat-menu --config $XDG_CONFIG_HOME/clipcat/clipcatd-systemd.toml
 # bindsym $ALT+F2 exec --no-startup-id thunar
 bindsym $ALT+F2 exec --no-startup-id nemo
 bindsym $ALT+F3 exec --no-startup-id $scripts/neovide
@@ -172,15 +173,15 @@ bindsym $mod+Shift+r reload, $send-notify 'Reload'
 
 bindsym $mod+r mode "resize"
 mode "resize" {
-    bindsym j resize shrink width 16 px or 16 ppt
-    bindsym k resize grow height 16 px or 16 ppt
-    bindsym l resize shrink height 16 px or 16 ppt
-    bindsym semicolon resize grow width 16 px or 16 ppt
+    bindsym h resize shrink width 16 px or 16 ppt
+    bindsym j resize grow height 16 px or 16 ppt
+    bindsym k resize shrink height 16 px or 16 ppt
+    bindsym l resize grow width 16 px or 16 ppt
 
-    bindsym Shift+j resize shrink width 6 px or 6 ppt
-    bindsym Shift+k resize grow height 6 px or 6 ppt
-    bindsym Shift+l resize shrink height 6 px or 6 ppt
-    bindsym Shift+semicolon resize grow width 6 px or 6 ppt
+    bindsym Shift+h resize shrink width 6 px or 6 ppt
+    bindsym Shift+j resize grow height 6 px or 6 ppt
+    bindsym Shift+k resize shrink height 6 px or 6 ppt
+    bindsym Shift+l resize grow width 6 px or 6 ppt
 
     bindsym s resize shrink width 10 px or 10 ppt, resize shrink height 10 px or 10 ppt
     bindsym b resize grow width 10 px or 10 ppt, resize grow height 10 px or 10 ppt
