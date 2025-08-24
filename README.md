@@ -10,6 +10,7 @@ Copy repository and create link to from `/home/takimoysha/dotfiles/taki-sway ~/.
 - swaybg - for wallpappers
 - wlsunset - for night light
 - ringboard (clipboard-history) - https://github.com/SUPERCILEX/clipboard-history/tree/master
+- clipcat - clipboard manager - https://github.com/xrelkd/clipcat, working as systemd unit
 - russ - rss reader (added linux feed: https://archlinux.org/feeds/news/) - https://github.com/ckampfe/russ
 - albert - plugin-based keyboard launcher
 

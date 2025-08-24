@@ -360,13 +360,12 @@ for_window {
 
 set $tmp_light "light -G > /tmp/brightness"
 set $tmp_light_restore "light -S $([ -f /tmp/brightness ] && cat /tmp/brightness || echo 100%)"
-set $lock_screen swaylock -f --config $workdir/swaylock/config
+# set $lock_screen swaylock -f --config $workdir/swaylock/config
 
-set $swayidle swayidle -w \
+exec swayidle -w \
     timeout 1000 '$tmp_light && light -S 10' resume $tmp_light_restore \
     timeout 1200 'exec $lock_screen' \
-    timeout 1200 'swaymsg "output * dpms off"' \
-    resume 'swaymsg "output * dpms on"' \
+    timeout 1200 'swaymsg "output * dpms off"' resume 'swaymsg "output * dpms on"' \
     before-sleep 'exec $lock_screen'
 
 # exec swayidle -w \
@@ -386,7 +385,6 @@ exec --no-startup-id megasync
 # exec --no-startup-id albert
 # exec_always ulauncher
 # exec --no-startup-id wlsunset
-exec_always clipcatd --config $workdir/clipcat/clipcat.toml
 # exec ringboard-server # installed as systemd unit
 
 exec dbus-daemon --session --address=unix:path=$XDG_RUNTIME_DIR/bus_session_socket
