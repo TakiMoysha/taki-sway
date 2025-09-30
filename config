@@ -119,7 +119,7 @@ bindsym Print exec flameshot gui
 bindsym $ALT+F1 exec --no-startup-id clipcat-menu --config $XDG_CONFIG_HOME/clipcat/clipcatd-systemd.toml
 # bindsym $ALT+F2 exec --no-startup-id thunar
 bindsym $ALT+F2 exec --no-startup-id nemo
-bindsym $ALT+F3 exec --no-startup-id $scripts/neovide
+bindsym $ALT+F3 exec --no-startup-id neovide
 bindsym $ALT+F4 exec --no-startup-id $term --class floating -e ringboard-tui
 
 bindsym XF86MonBrightnessUp exec light -A 5
@@ -318,7 +318,9 @@ for_window {
 }
 
 for_window {
-    [instance="VirtualBox Machine|VirtualBox Manager"] $float, resize set 800 600
+    [instance="VirtualBox Machine"] $float
+    [instance="VirtualBox Manager"] $float, resize set 800 600
+    # [instance="VirtualBox Machine|VirtualBox Manager"] $float, resize set 800 600
     [instance="VirtualBox"] $float
     [instance="anydesk"] $float
     [instance="gpartedbin"] floating enable
