@@ -301,6 +301,7 @@ for_window {
 	[app_id="kvantummanager"] $float
     [title="^Picture-in-Picture$"] $float, sticky enable, move position 1400 700, resize set 367 207 px, sticky enable
     [title="^Picture in Picture$"] $float, sticky enable, move position 1400 700, resize set 367 207 px, sticky enable
+    [title="^Picture in picture$"] $float, sticky enable, move position 1400 700, resize set 367 207 px, sticky enable
     [title="^Library$"] $float, sticky enable
     [title="Peek preview"] $float
 
