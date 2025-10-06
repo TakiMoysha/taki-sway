@@ -7,7 +7,7 @@ Copy repository and create link to from `/home/takimoysha/dotfiles/taki-sway ~/.
 ## Applications
 
 - grim - screenshot capture tool
-- swaybg - for wallpappers
+- swaybg - for wallpapers
 - wlsunset - for night light
 - ringboard (clipboard-history) - https://github.com/SUPERCILEX/clipboard-history/tree/master
 - clipcat - clipboard manager - https://github.com/xrelkd/clipcat, working as systemd unit

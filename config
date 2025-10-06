@@ -116,7 +116,7 @@ bindsym Print exec flameshot gui
 
 # bindsym $ALT+F1 exec --no-startup-id $scripts/rofi_launcher
 # bindsym $ALT+F1 exec --no-startup-id clipcat-menu --config $workdir/clipcat/clipcat.toml
-bindsym $ALT+F1 exec --no-startup-id clipcat-menu --config $XDG_CONFIG_HOME/clipcat/clipcatd-systemd.toml
+bindsym $ALT+F1 exec --no-startup-id clipcat-menu --config $XDG_CONFIG_HOME/clipcat/clipcatd.toml
 # bindsym $ALT+F2 exec --no-startup-id thunar
 bindsym $ALT+F2 exec --no-startup-id nemo
 bindsym $ALT+F3 exec --no-startup-id neovide
