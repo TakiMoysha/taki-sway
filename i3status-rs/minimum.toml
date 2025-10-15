@@ -43,7 +43,15 @@ cmd = "alacritty --class='float' -e nmcli"
 [[block]]
 block = "time"
 interval = 1
-format = " $timestamp.datetime(f:'%a:%d.%m.%y %H:%M') "
+format = " $timestamp.datetime(f:'%a %d.%m.%y (%H:%M)') "
+[[block]]
+block = "time"
+interval = 1
+timezone = "Europe/Moscow"
+[block.format]
+full = " $timestamp.datetime(f:'%R') "
+# short = " $timestamp.datetime(f:'%a') "
+
 
 
 [[block]]

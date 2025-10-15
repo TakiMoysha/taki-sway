@@ -280,6 +280,7 @@ for_window {
     [app_id="albert" title="Settings — Albert"] $float, resize set 1000 600
     [app_id="floating"] $float, resize set 1000 600
     [app_id="flameshot"] $float
+    [app_id="Bitwarden - Opera"] $float
     [app_id="qt5ct"] $float, sticky enable, border normal
     [app_id="qt6ct"] $float, sticky enable, border normal
     [app_id="xfce-polkit"] $float, sticky enable
@@ -341,26 +342,26 @@ for_window {
     [window_type="menu"] floating enable
 }
 
-# for_window {
-#     [title="Dropdown *"] floating enable
-#     [title="Dropdown *"] move scratchpad
-#     [title="Dropdown *"] sticky enable
-#     [title="Dropdown *"] scratchpad show
-#     [title="Dropdown *"] resize set width 625
-#     [title="Dropdown *"] resize set height 400
-#     [title="Dropdown *"] border pixel 3
-#     [title="Dropdown *"] move position center	
-#
-#     # General dropdown window traits. The order can matter.
-#     [title="Dropdown Launcher*"] floating enable
-#     [title="Dropdown Launcher*"] move scratchpad
-#     [title="Dropdown Launcher*"] sticky enable
-#     [title="Dropdown Launcher*"] scratchpad show
-#     [title="Dropdown Launcher*"] resize set width 225
-#     [title="Dropdown Launcher*"] resize set height 100
-#     [title="Dropdown Launcher*"] border pixel 0
-#     [title="Dropdown Launcher*"] move position center	
-# }
+for_window {
+    [title="Dropdown *"] floating enable
+    [title="Dropdown *"] move scratchpad
+    [title="Dropdown *"] sticky enable
+    [title="Dropdown *"] scratchpad show
+    [title="Dropdown *"] resize set width 625
+    [title="Dropdown *"] resize set height 400
+    [title="Dropdown *"] border pixel 3
+    [title="Dropdown *"] move position center	
+
+    # General dropdown window traits. The order can matter.
+    [title="Dropdown Launcher*"] floating enable
+    [title="Dropdown Launcher*"] move scratchpad
+    [title="Dropdown Launcher*"] sticky enable
+    [title="Dropdown Launcher*"] scratchpad show
+    [title="Dropdown Launcher*"] resize set width 225
+    [title="Dropdown Launcher*"] resize set height 100
+    [title="Dropdown Launcher*"] border pixel 0
+    [title="Dropdown Launcher*"] move position center	
+}
 
 set $tmp_light "light -G > /tmp/brightness"
 set $tmp_light_restore "light -S $([ -f /tmp/brightness ] && cat /tmp/brightness || echo 100%)"
