@@ -280,7 +280,7 @@ for_window {
     [app_id="albert" title="Settings — Albert"] $float, resize set 1000 600
     [app_id="floating"] $float, resize set 1000 600
     [app_id="flameshot"] $float
-    [app_id="Bitwarden - Opera"] $float
+    [app_id="vivaldi-stable" title="^Vivaldi Settings:*"] $float
     [app_id="qt5ct"] $float, sticky enable, border normal
     [app_id="qt6ct"] $float, sticky enable, border normal
     [app_id="xfce-polkit"] $float, sticky enable
