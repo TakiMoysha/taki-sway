@@ -273,6 +273,10 @@ for_window [class="float"] $float
 for_window [class="size-sm"] resize set 400 500
 for_window [app_id="float"] $float
 
+for_window [app_id="vivaldi-stable" title="^Vivaldi Settings:*"] $float
+for_window [app_id="vivaldi-stable" title="Save File"] $float
+for_window [app_id="selectdefaultapplication"] $float
+
 for_window {
     # [app_id="pot"] $float, resize set 600 800
     # [app_id="pot" title="Translate"] $float, resize set 400 600, move position 1500 10
@@ -280,7 +284,6 @@ for_window {
     [app_id="albert" title="Settings — Albert"] $float, resize set 1000 600
     [app_id="floating"] $float, resize set 1000 600
     [app_id="flameshot"] $float
-    [app_id="vivaldi-stable" title="^Vivaldi Settings:*"] $float
     [app_id="qt5ct"] $float, sticky enable, border normal
     [app_id="qt6ct"] $float, sticky enable, border normal
     [app_id="xfce-polkit"] $float, sticky enable
@@ -320,7 +323,7 @@ for_window {
 }
 
 for_window {
-    [instance="VirtualBox Machine"] $float
+    [instance="VirtualBox Machine"] $float, resize set 800 600
     [instance="VirtualBox Manager"] $float, resize set 800 600
     # [instance="VirtualBox Machine|VirtualBox Manager"] $float, resize set 800 600
     [instance="VirtualBox"] $float
