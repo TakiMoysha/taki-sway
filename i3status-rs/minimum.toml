@@ -12,7 +12,6 @@ critical_cpu = 80
 interval = 1
 [[block.click]]
 button = "left"
-cmd = "alacritty --class='float' -e htop"
 
 
 [[block]]
@@ -22,7 +21,6 @@ critical_mem = 90
 format = " $icon $mem_used_percents.eng(w:2) "
 [[block.click]]
 button = "left"
-cmd = "alacritty --class='float' -e htop"
 
 [[block]]
 block = "nvidia_gpu"
@@ -30,7 +28,6 @@ interval = 1
 format = " $icon $utilization "
 [[block.click]]
 button = "left"
-cmd = "alacritty --class='float' -e nvitop"
 
 [[block]]
 block = "net"
@@ -38,7 +35,6 @@ format = " $icon {$ip} "
 interval = 5
 [[block.click]]
 button = "left"
-cmd = "alacritty --class='float' -e nmcli"
 
 [[block]]
 block = "time"
@@ -59,11 +55,6 @@ block = "sound"
 [[block.click]]
 button = "middle"
 cmd = "pavucontrol"
-
-[[block]]
-block = "docker"
-socket_path = "/run/user/1000/podman/podman.sock"
-error_format = "..."
 
 
 [[block]]

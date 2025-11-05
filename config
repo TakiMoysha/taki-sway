@@ -6,11 +6,11 @@
 # https://gist.github.com/dshoreman/278091a17c08e30c46c7e7988b7c2f7d
 # 
 
-## ==================================== Helper:Utils
+## ==================================== HELPER:UTILS
 # xdotool -- for x11
 # swaymsg -t get_tree -- for sway
 
-## ==================================== Helper:Codes
+## ==================================== HELPER:CODES
 # keycode 67 = XF86Launch1
 # keycode 68 = XF86Launch2
 # keycode 69 = XF86Launch3
@@ -219,7 +219,7 @@ gaps inner 0
 # gaps outer 2
 gaps outer 0
 smart_gaps on
-default_border pixel 3
+default_border pixel 4
 # hide_edge_borders --i3 smart
 
 # Set the background image
@@ -235,7 +235,6 @@ input type:keyboard {
 bar {
     id system_bar
     status_command i3status-rs $workdir/i3status-rs/minimum.toml
-    # status_command i3status-rs $workdir/i3status-rs/config.toml
 
     # tray
     tray_padding 3
@@ -403,8 +402,8 @@ exec dbus-update-activation-environment --systemd WAYLAND_DISPLAY DISPLAY SWAYSO
 exec_always --no-startup-id setwall random ~/Pictures/wallpapers/ -c sway
 
 # exec --no-startup-id xsettingsd --config $workdir/xsettingsd
-# exec --no-startup-id conky -c $workdir/conky/helper.conf
-# exec --no-startup-id conky -c $workdir/conky/monitoring.conf
+# exec --no-startup-id conky -c $workdir/config.d/conky.helper.conf
+# exec --no-startup-id conky -c $workdir/config.d/conky.monitoring.conf
 
 # exec_always {
 #     gsettings set org.gnome.desktop.interface gtk-theme Everforest
