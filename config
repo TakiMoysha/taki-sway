@@ -33,7 +33,7 @@
 
 
 ## ==================================== PREINTALL
-include $HOME/.config/sway/config.d/*
+# include $HOME/.config/sway/config.d/*
 include $HOME/.config/sway/themes/catppuccin-mocha
 
 exec $scripts/sway_automount
