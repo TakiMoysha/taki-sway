@@ -119,8 +119,9 @@ bindsym Print exec flameshot gui
 bindsym $ALT+F1 exec --no-startup-id clipcat-menu --config $XDG_CONFIG_HOME/clipcat/clipcatd.toml
 # bindsym $ALT+F2 exec --no-startup-id thunar
 bindsym $ALT+F2 exec --no-startup-id nemo
-bindsym $ALT+F3 exec --no-startup-id neovide
+bindsym $ALT+F3 exec --no-startup-id $scripts/neovide
 bindsym $ALT+F4 exec --no-startup-id $term --class floating -e ringboard-tui
+bindsym $ALT+F5 exec --no-startup-id $scripts/rofi_current_task
 
 bindsym XF86MonBrightnessUp exec light -A 5
 bindsym XF86MonBrightnessDown exec light -U 5

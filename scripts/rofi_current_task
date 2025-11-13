@@ -1,0 +1,63 @@
+#!/usr/bin/env bash
+
+# Rofi interface for current-taskd
+# Usage: rofi-task.sh [set|get|menu]
+
+CURRENT_TASK="current-taskd"
+
+case "$1" in
+    "set")
+        # Interactive task setting
+        TASK=$(rofi -dmenu -p "Set task:" --theme=../rofi/current_task.rasi)
+        if [ -n "$TASK" ]; then
+            $CURRENT_TASK set "$TASK"
+            notify-send -t 2000 "Task Set" "$TASK" 2>/dev/null || true
+        fi
+        ;;
+        
+    "get")
+        # Show current task
+        TASK=$($CURRENT_TASK get)
+        if [ "$TASK" = "No current task set" ]; then
+            rofi -e "No current task set"
+        else
+            rofi -e "Current task: $TASK"
+        fi
+        ;;
+        
+    "menu"|"")
+        # Main menu
+        current_task=$($CURRENT_TASK get)
+        if [ "$current_task" = "No current task set" ]; then
+            CURRENT_DISPLAY="No task set"
+        else
+            CURRENT_DISPLAY="Current: $current_task"
+        fi
+        
+        CHOICE=$(echo -e "Set new task\nShow current task\nClear task\n---\n$CURRENT_DISPLAY" | \
+                rofi -dmenu -p "Task Manager:" -theme-str 'window {width: 40%;}')
+        
+        case "$CHOICE" in
+            "Set new task")
+                "$0" set
+                ;;
+            "Show current task")
+                "$0" get
+                ;;
+            "Clear task")
+                $CURRENT_TASK set ""
+                notify-send -t 2000 "Task Cleared" "Current task has been cleared" 2>/dev/null || true
+                ;;
+        esac
+        ;;
+        
+    *)
+        echo "Usage: $0 {set|get|menu}"
+        echo ""
+        echo "Commands:"
+        echo "  set   - Interactive task setting with rofi"
+        echo "  get   - Show current task in rofi"
+        echo "  menu  - Show task management menu"
+        exit 1
+        ;;
+esac

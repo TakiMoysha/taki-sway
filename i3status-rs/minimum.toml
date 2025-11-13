@@ -5,6 +5,13 @@ icons = "awesome4"
 separator = "/"
 
 [[block]]
+block = "custom"
+# command = "task current_tasks limit:1 | awk 'NR==4 {for (i=2; i<=NF; i++) printf $i (i<NF ? \" \" : \"\"); print \"\"}'"
+command = "current-taskd get"
+format = " $text "
+interval = 10
+
+[[block]]
 block = "cpu"
 info_cpu = 20
 warning_cpu = 50

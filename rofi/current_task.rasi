@@ -1,0 +1,88 @@
+/*
+ * Rofi theme for current-taskd
+ * Simple, clean theme for task management
+ */
+
+* {
+    background-color: #2b2b2b;
+    text-color: #ffffff;
+    border-color: #4a90e2;
+    separatorcolor: #4a90e2;
+    selected-normal-background: #4a90e2;
+    selected-normal-foreground: #ffffff;
+}
+
+window {
+    background-color: @background-color;
+    border: 2px;
+    border-color: @border-color;
+    border-radius: 8px;
+    padding: 10px;
+}
+
+mainbox {
+    border: 0;
+    padding: 0;
+}
+
+message {
+    border: 0px;
+    border-color: @separatorcolor;
+    padding: 10px;
+}
+
+textbox {
+    text-color: @text-color;
+}
+
+listview {
+    border: 0px;
+    padding: 5px 0px 0px;
+    scrollbar: false;
+    lines: 6;
+}
+
+element {
+    border: 0;
+    padding: 8px;
+    border-radius: 4px;
+}
+
+element.selected.normal {
+    background-color: @selected-normal-background;
+    text-color: @selected-normal-foreground;
+}
+
+element.normal.active {
+    background-color: #3d5a80;
+    text-color: @text-color;
+}
+
+element.selected.active {
+    background-color: @selected-normal-background;
+    text-color: @selected-normal-foreground;
+}
+
+inputbar {
+    spacing: 0;
+    text-color: @text-color;
+    padding: 8px;
+    border: 0px 0px 2px 0px;
+    border-color: @separatorcolor;
+}
+
+case-indicator {
+    spacing: 0;
+    text-color: @text-color;
+}
+
+entry {
+    spacing: 0;
+    text-color: @text-color;
+}
+
+prompt {
+    spacing: 0;
+    text-color: @text-color;
+    font: "bold";
+}

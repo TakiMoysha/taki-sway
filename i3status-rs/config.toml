@@ -24,9 +24,8 @@ backlight = [
 [[block]]
 block = "custom"
 # command = "task current_tasks limit:1 | awk 'NR==4 {for (i=2; i<=NF; i++) printf $i (i<NF ? \" \" : \"\"); print \"\"}'"
-command = "task current_tasks limit:1 | awk 'NR==4'"
 format = "$text"
-interval = 8
+interval = 10
 
 # [[block]]
 # block = "taskwarrior"
