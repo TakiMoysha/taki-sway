@@ -56,7 +56,6 @@ full = " $timestamp.datetime(f:'%R') "
 # short = " $timestamp.datetime(f:'%a') "
 
 
-
 [[block]]
 block = "sound"
 [[block.click]]
