@@ -17,8 +17,8 @@ info_cpu = 20
 warning_cpu = 50
 critical_cpu = 80
 interval = 1
-[[block.click]]
-button = "left"
+# [[block.click]]
+# button = "left"
 
 
 [[block]]
@@ -26,15 +26,23 @@ block = "memory"
 warning_mem = 70
 critical_mem = 90
 format = " $icon $mem_used_percents.eng(w:2) "
-[[block.click]]
-button = "left"
 
 [[block]]
 block = "nvidia_gpu"
 interval = 1
 format = " $icon $utilization "
+
+[[block]]
+block = "disk_space"
+info_type = "available"
+alert_unit = "GB"
+alert = 1
+warning = 3
+format = " $icon $available "
 [[block.click]]
-button = "left"
+button = "right"
+update = true
+
 
 [[block]]
 block = "net"
