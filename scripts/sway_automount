@@ -12,7 +12,6 @@ mount_disk() {
 
 sleep 1;
 
-mount_disk "/dev/disk/by-label/devlab"
 mount_disk "/dev/disk/by-label/linux-media"
 mount_disk "/dev/disk/by-partlabel/linux-home"
 

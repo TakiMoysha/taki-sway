@@ -46,61 +46,62 @@ set $ALT Mod1
 set $workdir ~/.config/sway
 set $scripts ~/.config/sway/scripts
 
-set $term alacritty --config-file $workdir/alacritty/config.toml
+# set $term alacritty --config-file $workdir/alacritty/config.toml
+set $term kitty
 set $send-notify exec --no-startup-id notify-send -u low -h string:x-dunst-stack-tag:sway
 
 exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
 
 # font pango:DejaVu SansMono 8
 
-bindsym $mod+h focus left
-bindsym $mod+j focus down
-bindsym $mod+k focus up
-bindsym $mod+l focus right
+bindsym $mod+h              focus left
+bindsym $mod+j              focus down
+bindsym $mod+k              focus up
+bindsym $mod+l              focus right
 
-bindsym $mod+Left focus left
-bindsym $mod+Down focus down
-bindsym $mod+Up focus up
-bindsym $mod+Right focus right
+bindsym $mod+Left           focus left
+bindsym $mod+Down           focus down
+bindsym $mod+Up             focus up
+bindsym $mod+Right          focus right
 
-bindsym $mod+Shift+h move left
-bindsym $mod+Shift+j move down
-bindsym $mod+Shift+k move up
-bindsym $mod+Shift+l move right
+bindsym $mod+Shift+h        move left
+bindsym $mod+Shift+j        move down
+bindsym $mod+Shift+k        move up
+bindsym $mod+Shift+l        move right
 
-bindsym $mod+Shift+Left move left
-bindsym $mod+Shift+Down move down
-bindsym $mod+Shift+Up move up
-bindsym $mod+Shift+Right move right
+bindsym $mod+Shift+Left     move left
+bindsym $mod+Shift+Down     move down
+bindsym $mod+Shift+Up       move up
+bindsym $mod+Shift+Right    move right
 
 ## ========================== REVIEW
-bindsym $mod+Shift+e split toggle 
+bindsym $mod+Shift+e        split toggle 
 
-bindsym $mod+f fullscreen toggle
+bindsym $mod+f              fullscreen toggle
 # bindsym $mod+c split h, $send-notify 'Horizontal Focus'
 # bindsym $mod+v split v, $send-notify 'Vertical Focus'
 ## ========================== END
 
 ## ========================== REVIEW
-bindsym $mod+e layout toggle split
-bindsym $mod+Shift+u layRut toggle, $send-notify "Layout: Toggle"
+bindsym $mod+e              layout toggle split
+bindsym $mod+Shift+u        layout toggle, $send-notify "Layout: Toggle"
 
-bindsym $mod+w layout tabbed, $send-notify "Layout: Tabbed"
-bindsym $mod+s layout stacking, $send-notify "Layout: Stacking"
+bindsym $mod+w              layout tabbed, $send-notify "Layout: Tabbed"
+bindsym $mod+s              layout stacking, $send-notify "Layout: Stacking"
 ## ========================== END
 
-bindsym $mod+Shift+space floating toggle
+bindsym $mod+Shift+space    floating toggle
 
-bindsym $mod+space focus mode_toggle
+bindsym $mod+space          focus mode_toggle
 
-bindsym $mod+Shift+p focus parent
-bindsym $mod+p focus child
+bindsym $mod+Shift+p        focus parent
+bindsym $mod+p              focus child
 
-bindsym $mod+Shift+s sticky toggle
+bindsym $mod+Shift+s        sticky toggle
 
 # hide/show
-bindsym $mod+Shift+minus move scratchpad
-bindsym $mod+minus scratchpad show
+bindsym $mod+Shift+minus    move scratchpad
+bindsym $mod+minus          scratchpad show
 
 bindsym $mod+m bar mode toggle
 
@@ -109,30 +110,30 @@ floating_modifier $mod
 
 # bindsym $mod+Shift+q kill
 bindcode $mod+Shift+24 kill
-bindsym $mod+Return exec --no-startup-id $term
-bindcode $mod+40 exec rofi -theme $workdir/rofi/config.rasi -show drun
+bindsym $mod+Return     exec --no-startup-id $term
+bindcode $mod+40        exec rofi -theme $workdir/rofi/config.rasi -show drun
 # bindcode $mod+40 exec --no-startup-id wofi --conf $workdir/wofi/config --style $workdir/wofi/style.css
-bindsym Print exec flameshot gui
+bindsym Print           exec flameshot gui
 
 # bindsym $ALT+F1 exec --no-startup-id $scripts/rofi_launcher
 # bindsym $ALT+F1 exec --no-startup-id clipcat-menu --config $workdir/clipcat/clipcat.toml
-bindsym $ALT+F1 exec --no-startup-id clipcat-menu --config $XDG_CONFIG_HOME/clipcat/clipcatd.toml
-bindsym $ALT+F2 exec --no-startup-id thunar
+bindsym $ALT+F1         exec --no-startup-id clipcat-menu --config $XDG_CONFIG_HOME/clipcat/clipcatd.toml
+bindsym $ALT+F2         exec --no-startup-id thunar
 # bindsym $ALT+F2 exec --no-startup-id nemo
-bindsym $ALT+F3 exec --no-startup-id $scripts/neovide
-bindsym $ALT+F4 exec --no-startup-id $term --class floating -e ringboard-tui
-bindsym $ALT+F5 exec --no-startup-id $scripts/rofi_current_task
+bindsym $ALT+F3         exec --no-startup-id $scripts/neovide
+bindsym $ALT+F4         exec --no-startup-id $term --class floating -e ringboard-tui
+bindsym $ALT+F5         exec --no-startup-id $scripts/rofi_current_task
 
-bindsym XF86MonBrightnessUp exec light -A 5
-bindsym XF86MonBrightnessDown exec light -U 5
-# bindsym XF86KbdBrightnessUp exec light -A 5 -s sysfs/leds/smc::kbd_backlight
-# bindsym XF86KbdBrightnessDown exec light -U 5 -s sysfs/leds/smc::kbd_backlight
-bindsym XF86AudioRaiseVolume exec pactl set-sink-volume @DEFAULT_SINK@ +5%
-bindsym XF86AudioLowerVolume exec pactl set-sink-volume @DEFAULT_SINK@ -5%
-bindsym XF86AudioMute exec pactl set-sink-mute @DEFAULT_SINK@ toggle
-bindsym XF86AudioNext exec playerctl next
-bindsym XF86AudioPrev exec playerctl previous
-bindsym XF86AudioPlay exec playerctl play-pause
+bindsym XF86MonBrightnessUp     exec light -A 5
+bindsym XF86MonBrightnessDown   exec light -U 5
+# bindsym XF86KbdBrightnessUp     exec light -A 5 -s sysfs/leds/smc::kbd_backlight
+# bindsym XF86KbdBrightnessDown   exec light -U 5 -s sysfs/leds/smc::kbd_backlight
+bindsym XF86AudioRaiseVolume    exec pactl set-sink-volume @DEFAULT_SINK@ +5%
+bindsym XF86AudioLowerVolume    exec pactl set-sink-volume @DEFAULT_SINK@ -5%
+bindsym XF86AudioMute           exec pactl set-sink-mute @DEFAULT_SINK@ toggle
+bindsym XF86AudioNext           exec playerctl next
+bindsym XF86AudioPrev           exec playerctl previous
+bindsym XF86AudioPlay           exec playerctl play-pause
 
 set $ws1 "1"
 set $ws2 "2"
@@ -313,10 +314,12 @@ for_window {
 	[app_id="^xfce4-*"] $float
 
 	[app_id="(?i)mpv"] $float
-    [app_id="xarchiver"] $float, resize set 900 600
+    [app_id="peazip"] $float
+    [app_id="xarchiver"] $float
 
     [app_id="vesktop"] $float, move position 840 240, resize set 1080 740 px
     [app_id="telegram"] $float, move position 900 160, resize set 870 830 px
+    [app_id="rquickshare"] $float, move position 900 160, resize set 870 830 px
 }
 
 for_window {
