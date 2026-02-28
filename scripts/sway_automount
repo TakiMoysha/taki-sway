@@ -12,7 +12,8 @@ mount_disk() {
 
 sleep 1;
 
-mount_disk "/dev/disk/by-label/linux-media"
+# mount_disk "/dev/disk/by-label/funy"
+# mount_disk "/dev/disk/by-label/linux-media"
 mount_disk "/dev/disk/by-partlabel/linux-home"
 
 exit 0

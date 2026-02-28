@@ -46,7 +46,7 @@ set $ALT Mod1
 set $workdir ~/.config/sway
 set $scripts ~/.config/sway/scripts
 
-# set $term alacritty --config-file $workdir/alacritty/config.toml
+# set $term alacritty
 set $term kitty
 set $send-notify exec --no-startup-id notify-send -u low -h string:x-dunst-stack-tag:sway
 
@@ -145,6 +145,12 @@ set $ws7 "7"
 set $ws8 "8"
 set $ws9 "9"
 set $ws10 "10"
+
+# switch to next/previous workspace
+bindsym $mod+z workspace prev_on_output
+bindsym $mod+x workspace next_on_output
+# bindsym $mod+Shift+. workspace next
+# bindsym $mod+Shift+. workspace prev
 
 # switch to workspace
 bindsym $mod+1 workspace number $ws1
@@ -269,13 +275,15 @@ title_align center
 set $float border pixel 3, floating enable
 
 for_window [class=".*"] title_format "%title"
-for_window [class="float"] $float
 for_window [class="size-sm"] resize set 400 500
+for_window [class="float"] $float
 for_window [app_id="float"] $float
 
 for_window [app_id="vivaldi-stable" title="^Vivaldi Settings:*"] $float
 for_window [app_id="vivaldi-stable" title="Save File"] $float
 for_window [app_id="selectdefaultapplication"] $float
+
+for_window [app_id="Rockstar Games Launcher"] $float
 
 for_window {
     # [app_id="pot"] $float, resize set 600 800
