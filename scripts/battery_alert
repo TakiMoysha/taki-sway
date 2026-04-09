@@ -1,0 +1,11 @@
+#!/usr/bin/env bash
+
+threshold=20
+
+acpi -b | awk -F '[,:%]' '{print $2, $3}' | {
+  read -r status capacity
+
+  if [ "$status" = "Discharging" -a "$capacity" -lt "$threshold" ]; then
+    notify-send -u critical "Battery low"
+  fi
+}

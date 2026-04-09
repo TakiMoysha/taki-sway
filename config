@@ -46,8 +46,8 @@ set $ALT Mod1
 set $workdir ~/.config/sway
 set $scripts ~/.config/sway/scripts
 
-# set $term alacritty
-set $term kitty
+set $term alacritty
+# set $term kitty
 set $send-notify exec --no-startup-id notify-send -u low -h string:x-dunst-stack-tag:sway
 
 exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
@@ -117,11 +117,11 @@ bindsym Print           exec flameshot gui
 
 # bindsym $ALT+F1 exec --no-startup-id $scripts/rofi_launcher
 # bindsym $ALT+F1 exec --no-startup-id clipcat-menu --config $workdir/clipcat/clipcat.toml
-bindsym $ALT+F1         exec --no-startup-id clipcat-menu --config $XDG_CONFIG_HOME/clipcat/clipcatd.toml
+# bindsym $ALT+F1         exec --no-startup-id clipcat-menu --config $XDG_CONFIG_HOME/clipcat/clipcatd.toml
+bindsym $ALT+F1         exec --no-startup-id copyq toggle
 bindsym $ALT+F2         exec --no-startup-id thunar
-# bindsym $ALT+F2 exec --no-startup-id nemo
 bindsym $ALT+F3         exec --no-startup-id $scripts/neovide
-bindsym $ALT+F4         exec --no-startup-id $term --class floating -e ringboard-tui
+bindsym $ALT+F4         exec --no-startup-id clipcat-menu
 bindsym $ALT+F5         exec --no-startup-id $scripts/rofi_current_task
 
 bindsym XF86MonBrightnessUp     exec light -A 5
@@ -281,6 +281,7 @@ for_window [app_id="vivaldi-stable" title="Save File"] $float
 for_window [app_id="selectdefaultapplication"] $float
 
 for_window [app_id="Rockstar Games Launcher"] $float
+for_window [app_id="nvchad"] $float, resize set 890 890, move position 980 135
 
 for_window {
     # [app_id="pot"] $float, resize set 600 800
@@ -325,6 +326,8 @@ for_window {
     [app_id="vesktop"] $float, move position 840 240, resize set 1080 740 px
     [app_id="telegram"] $float, move position 900 160, resize set 870 830 px
     [app_id="rquickshare"] $float, move position 900 160, resize set 870 830 px
+
+    [app_id="com.github.hluk.copyq"] $float, resize set 800 400, move position 1040 80
 }
 
 for_window {
@@ -344,6 +347,7 @@ for_window {
     [instance="lxappearance"] $float
 
     # [instance="steamwebhelper"] $float
+    [class="steam"] $float
 }
 
 for_window {
