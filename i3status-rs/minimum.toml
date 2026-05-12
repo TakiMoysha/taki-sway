@@ -20,7 +20,6 @@ interval = 1
 # [[block.click]]
 # button = "left"
 
-
 [[block]]
 block = "memory"
 warning_mem = 70
@@ -36,18 +35,19 @@ format = " $icon $utilization "
 block = "disk_space"
 info_type = "available"
 alert_unit = "GB"
-alert = 1
-warning = 3
+alert = 3
+warning = 6
 format = " $icon $available "
+
 [[block.click]]
 button = "right"
 update = true
-
 
 [[block]]
 block = "net"
 format = " $icon {$ip} "
 interval = 5
+
 [[block.click]]
 button = "left"
 
@@ -60,17 +60,17 @@ format = " $timestamp.datetime(f:'%a %d.%m.%y (%H:%M)') "
 block = "time"
 interval = 1
 timezone = "Europe/Moscow"
+
 [block.format]
 full = " $timestamp.datetime(f:'%R') "
 short = " $timestamp.datetime(f:'%a') "
 
-
 [[block]]
 block = "sound"
+
 [[block.click]]
 button = "middle"
 cmd = "pavucontrol"
-
 
 [[block]]
 block = "battery"
@@ -82,6 +82,7 @@ not_charging_format = " $icon $percentage ($time_remaining)"
 block = "keyboard_layout"
 driver = "sway"
 sway_kb_identifier = "1:1:AT_Translated_Set_2_keyboard"
+
 [block.mappings]
 "English (US)" = "US"
 "Russian (N/A)" = "RU"

@@ -9,6 +9,7 @@
 ## ==================================== HELPER:UTILS
 # xdotool -- for x11
 # swaymsg -t get_tree -- for sway
+# wayscriber -- for draw-overlay
 
 ## ==================================== HELPER:CODES
 # keycode 67 = XF86Launch1
@@ -53,6 +54,10 @@ set $send-notify exec --no-startup-id notify-send -u low -h string:x-dunst-stack
 exec systemctl --user import-environment DISPLAY WAYLAND_DISPLAY SWAYSOCK XDG_CURRENT_DESKTOP
 
 # font pango:DejaVu SansMono 8
+
+# hide cursor / 
+seat seat0 hide_cursor 3000
+# seat seat0 hide_cursor when-typing enable # issue: bug in 3d apps (pascube + mouse movement + D)
 
 bindsym $mod+h              focus left
 bindsym $mod+j              focus down
@@ -122,7 +127,7 @@ bindsym $ALT+F1         exec --no-startup-id copyq toggle
 bindsym $ALT+F2         exec --no-startup-id thunar
 bindsym $ALT+F3         exec --no-startup-id $scripts/neovide
 bindsym $ALT+F4         exec --no-startup-id clipcat-menu
-bindsym $ALT+F5         exec --no-startup-id $scripts/rofi_current_task
+bindsym $ALT+F12         exec --no-startup-id $scripts/rofi_current_task
 
 bindsym XF86MonBrightnessUp     exec light -A 5
 bindsym XF86MonBrightnessDown   exec light -U 5
@@ -282,6 +287,8 @@ for_window [app_id="selectdefaultapplication"] $float
 
 for_window [app_id="Rockstar Games Launcher"] $float
 for_window [app_id="nvchad"] $float, resize set 890 890, move position 980 135
+for_window [app_id="localsend"] $float
+for_window [class="Godot"] $float
 
 for_window {
     # [app_id="pot"] $float, resize set 600 800
@@ -409,6 +416,7 @@ exec --no-startup-id dunst -conf $workdir/dunst/config
 # exec --no-startup-id morgen
 # check, maybe not started
 exec --no-startup-id megasync 
+exec --no-startup-id copyq
 # exec --no-startup-id albert
 # exec_always ulauncher
 # exec --no-startup-id wlsunset
