@@ -124,10 +124,10 @@ bindsym Print           exec flameshot gui
 # bindsym $ALT+F1 exec --no-startup-id clipcat-menu --config $workdir/clipcat/clipcat.toml
 # bindsym $ALT+F1         exec --no-startup-id clipcat-menu --config $XDG_CONFIG_HOME/clipcat/clipcatd.toml
 bindsym $ALT+F1         exec --no-startup-id copyq toggle
-bindsym $ALT+F2         exec --no-startup-id thunar
+bindsym $ALT+F2         exec --no-startup-id nemo
 bindsym $ALT+F3         exec --no-startup-id $scripts/neovide
 bindsym $ALT+F4         exec --no-startup-id clipcat-menu
-bindsym $ALT+F12         exec --no-startup-id $scripts/rofi_current_task
+bindsym $ALT+F12        exec --no-startup-id $scripts/rofi_current_task
 
 bindsym XF86MonBrightnessUp     exec light -A 5
 bindsym XF86MonBrightnessDown   exec light -U 5
@@ -275,7 +275,9 @@ title_align center
 
 # * [!] shadows enable - not working
 set $float border pixel 3, floating enable
+set $big_right_side resize set 890 890, move position 980 135 
 
+for_window [app_id="zenity"] $float, border none
 for_window [class=".*"] title_format "%title"
 for_window [class="size-sm"] resize set 400 500
 for_window [class="float"] $float
@@ -283,11 +285,13 @@ for_window [app_id="float"] $float
 
 for_window [app_id="vivaldi-stable" title="^Vivaldi Settings:*"] $float
 for_window [app_id="vivaldi-stable" title="Save File"] $float
+for_window [app_id="vivaldi-stable" title="^Developer Tools*"] $float, $big_right_side
 for_window [app_id="selectdefaultapplication"] $float
 
 for_window [app_id="Rockstar Games Launcher"] $float
-for_window [app_id="nvchad"] $float, resize set 890 890, move position 980 135
+for_window [app_id="nvchad"] $float, $big_right_side
 for_window [app_id="localsend"] $float
+for_window [app_id="org.gnome.gThumb"] $float
 for_window [class="Godot"] $float
 
 for_window {
@@ -303,8 +307,6 @@ for_window {
     [app_id="blueman-manager"] $float
     [app_id="(?i)nemo"] $float
     [app_id="(?i)thunar"] $float
-    # [app_id="(?i)thunar"] floating enable, resize set 1000 600
-    # [app_id="thunar" title="File Operation Progress"] floating enable, resize set 400 160
     [app_id="thunar" title="^Copying.*|^Confirm.*|^File.*|^Create.*|^Select.*"] $float
     [app_id="pavucontrol"] $float
 	[app_id="nm-connection-editor$"] $float
