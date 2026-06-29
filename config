@@ -105,8 +105,8 @@ bindsym $mod+p              focus child
 bindsym $mod+Shift+s        sticky toggle
 
 # hide/show
-bindsym $mod+Shift+minus    move scratchpad
-bindsym $mod+minus          scratchpad show
+bindsym $mod+minus          move scratchpad
+bindsym $mod+equal          scratchpad show
 
 bindsym $mod+m bar mode toggle
 
@@ -183,10 +183,10 @@ bindsym $mod+Shift+r reload, $send-notify 'Reload'
 
 bindsym $mod+r mode "resize"
 mode "resize" {
-    bindsym h resize shrink width 16 px or 16 ppt
-    bindsym j resize grow height 16 px or 16 ppt
-    bindsym k resize shrink height 16 px or 16 ppt
-    bindsym l resize grow width 16 px or 16 ppt
+    bindsym h resize shrink width 14 px or 14 ppt
+    bindsym j resize grow height 14 px or 14 ppt
+    bindsym k resize shrink height 14 px or 14 ppt
+    bindsym l resize grow width 14 px or 14 ppt
 
     bindsym Shift+h resize shrink width 6 px or 6 ppt
     bindsym Shift+j resize grow height 6 px or 6 ppt
@@ -277,6 +277,9 @@ title_align center
 set $float border pixel 3, floating enable
 set $big_right_side resize set 890 890, move position 980 135 
 
+for_window [class="XnViewMP"] $float
+for_window [app_id="XnView"] $float
+# for_window [app_id="XnView"] $float
 for_window [app_id="zenity"] $float, border none
 for_window [class=".*"] title_format "%title"
 for_window [class="size-sm"] resize set 400 500
